@@ -7,17 +7,17 @@ export interface ImageData {
   export const images: ImageData[] = [
     {
       src: "/login-right.jpg",
-      alt: "White classic sports car at dusk",
+      alt: "img",
       location: "Highlands, Scotland",
     },
     {
       src: "/login-right-2.jpg",
-      alt: "Red vintage race car on track",
+      alt: "img",
       location: "Monza, Italy",
     },
     {
       src: "/login-right-3.jpg",
-      alt: "Silver retro convertible by the coast",
+      alt: "img",
       location: "Amalfi Coast, Italy",
     },
   ]

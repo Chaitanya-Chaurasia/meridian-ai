@@ -35,7 +35,7 @@ export function LoginForm() {
               id="remember-me"
               className="h-4 w-4 rounded-[4px] border-neutral-400 data-[state=checked]:bg-[#BFFF00] data-[state=checked]:text-black data-[state=checked]:border-[#BFFF00]"
             />
-            <Label htmlFor="remember-me" className="ml-2 font-medium text-white">
+            <Label htmlFor="remember-me" className="ml-2 font-medium text-xs text-white">
               Remember me
             </Label>
           </div>
