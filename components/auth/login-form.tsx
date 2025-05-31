@@ -16,7 +16,7 @@ export function LoginForm() {
           <Input
             id="username"
             type="text"
-            className="mt-1 w-full border-0 border-b-2 border-gray-500 focus:ring-0 focus:border-[#BFFA00] transition px-1 py-2 text-sm bg-transparent text-white placeholder:text-gray-400"
+            className="mt-1 w-full border-0 border-b-1 transition px-1 py-2 text-sm bg-transparent text-white placeholder:text-gray-400"
           />
         </div>
         <div>
@@ -26,7 +26,7 @@ export function LoginForm() {
           <Input
             id="password"
             type="password"
-            className="mt-1 w-full border-0 border-b-2 border-gray-500 focus:ring-0 focus:border-[#BFFA00] transition px-1 py-2 text-sm bg-transparent text-white placeholder:text-gray-400"
+            className="mt-1 w-full border-0 border-b-1 transition px-1 py-2 text-sm bg-transparent text-white placeholder:text-gray-400"
           />
         </div>
         <div className="flex items-center justify-between text-xs pt-1">
