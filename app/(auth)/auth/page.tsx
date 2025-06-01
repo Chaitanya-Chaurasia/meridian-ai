@@ -1,36 +1,34 @@
-// Main page managing view mode and image slideshow
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { LoginLeftPanel } from "@/components/auth/login-left-panel";
-import { LoginRightPanel } from "@/components/auth/login-right-panel";
-import { images } from "@/lib/image-data";
+import { useState, useEffect } from "react"
+import { LoginLeftPanel } from "@/components/auth/login-left-panel"
+import { LoginRightPanel } from "@/components/auth/login-right-panel"
+import { RegisterFlow } from "@/components/auth/register-flow"
+import { images } from "@/lib/image-data"
 
 export default function AuthPage() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [viewMode, setViewMode] = useState<"login" | "register">("login");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false) // New state for modal
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
 
   const handlePrevImage = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      handleNextImage();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentImageIndex]);
+      handleNextImage()
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [currentImageIndex])
 
-  const currentImage = images[currentImageIndex];
+  const currentImage = images[currentImageIndex]
 
-  const switchToRegister = () => setViewMode("register");
-  const switchToLogin = () => setViewMode("login");
+  const openRegisterModal = () => setIsRegisterModalOpen(true)
+  const closeRegisterModal = () => setIsRegisterModalOpen(false)
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] text-neutral-800">
@@ -39,20 +37,19 @@ export default function AuthPage() {
           <div className="lg:px-8 py-12 lg:py-16 flex items-center">
             <LoginLeftPanel
               currentImage={currentImage}
-              onSwitchToRegister={switchToRegister}
+              onSwitchToRegister={openRegisterModal} 
             />
           </div>
           <div className="hidden lg:block h-full">
-            <LoginRightPanel
-              currentImage={currentImage}
-              onNext={handleNextImage}
-              onPrev={handlePrevImage}
-              viewMode={viewMode}
-              onSwitchToLogin={switchToLogin}
-            />
+            <LoginRightPanel currentImage={currentImage} onNextImage={handleNextImage} onPrevImage={handlePrevImage} />
           </div>
         </div>
       </main>
+      {isRegisterModalOpen && (
+        <div className="fixed inset-0 backdrop-blur-lg flex items-center justify-center z-50">
+            <RegisterFlow onSwitchToLogin={closeRegisterModal} />
+        </div>
+      )}
     </div>
-  );
+  )
 }

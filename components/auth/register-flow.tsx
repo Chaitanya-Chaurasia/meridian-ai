@@ -1,4 +1,4 @@
-// New component to manage registration steps
+// Using the provided file content, ensuring onSwitchToLogin is correctly typed and used
 "use client"
 
 import { useState } from "react"
@@ -9,7 +9,7 @@ import { RegisterStep2Choices } from "./register-step-2-choices"
 import { RegisterStep3Nickname } from "./register-step-3-nickname"
 
 interface RegisterFlowProps {
-  onSwitchToLogin: () => void
+  onSwitchToLogin: () => void 
 }
 
 export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
@@ -33,7 +33,7 @@ export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
   const handleFinish = (nicknameData: any) => {
     const finalData = { ...formData, ...nicknameData }
     console.log("Final Registration Data:", finalData)
-    // API call to register user
+    onSwitchToLogin() 
     router.push("/plan")
   }
 
@@ -43,8 +43,10 @@ export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
     exit: (direction: string) => ({ x: direction === "next" ? "-100%" : "100%", opacity: 0 }),
   }
 
+  
+
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center p-4 md:p-8 relative overflow-hidden">
+    <div className="w-full flex flex-col justify-center items-center relative overflow-hidden">
       <AnimatePresence initial={false} custom={slideDirection} mode="wait">
         {step === 1 && (
           <motion.div
@@ -55,7 +57,7 @@ export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
             animate="center"
             exit="exit"
             transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
-            className="w-full max-w-md bg-white/10 backdrop-blur-sm p-8" // Ensure content is constrained
+            className={`w-full max-w-md`}
           >
             <RegisterStep1Form onNext={handleNextStep1} onSwitchToLogin={onSwitchToLogin} />
           </motion.div>
@@ -69,7 +71,7 @@ export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
             animate="center"
             exit="exit"
             transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
-            className="w-full max-w-lg" // Wider for choices
+            className={`w-full max-w-lg p-6 md:p-8  flex flex-col`}
           >
             <RegisterStep2Choices onNext={handleNextStep2} />
           </motion.div>
@@ -83,7 +85,7 @@ export function RegisterFlow({ onSwitchToLogin }: RegisterFlowProps) {
             animate="center"
             exit="exit"
             transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
-            className="w-full max-w-md"
+            className={`w-full max-w-md p-6 md:p-8  flex flex-col`}
           >
             <RegisterStep3Nickname onFinish={handleFinish} />
           </motion.div>

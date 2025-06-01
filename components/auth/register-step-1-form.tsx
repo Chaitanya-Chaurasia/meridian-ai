@@ -1,3 +1,4 @@
+// Using the provided file content
 "use client"
 
 import { useForm, type SubmitHandler } from "react-hook-form"
@@ -25,15 +26,15 @@ type FormData = z.infer<typeof schema>
 
 interface RegisterStep1FormProps {
   onNext: (data: FormData) => void
-  onSwitchToLogin: () => void
+  onSwitchToLogin: () => void // This will close the modal
 }
 
 const inputVariants = {
-  hidden: { opacity: 0, y: 15 }, // Slightly reduced y offset
+  hidden: { opacity: 0, y: 15 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.07, duration: 0.35, ease: "easeOut" }, // Slightly faster stagger
+    transition: { delay: i * 0.07, duration: 0.35, ease: "easeOut" },
   }),
 }
 
@@ -56,91 +57,91 @@ export function RegisterStep1Form({ onNext, onSwitchToLogin }: RegisterStep1Form
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col h-full" // Ensures it tries to fill height if parent allows
+      className="relative flex flex-col h-full items-center bg-white p-6 rounded-xl"
     >
+      <span className="absolute inset-x-0 bottom-0 h-4 bg-[#BFFF00] z-0 transform translate-y-1"></span>
+
       <motion.h2
         custom={0}
         variants={inputVariants}
         initial="hidden"
         animate="visible"
-        className="text-xl font-semibold text-center text-white tracking-tight mb-5" // Reduced size & margin
+        className="text-xl flex flex-col gap-6 font-semibold text-center mb-5 tracking-tight"
       >
-        Let's Get Started...
-      </motion.h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5 flex-grow flex flex-col justify-center">
         {" "}
-        {/* Reduced space-y */}
+        <span className="tracking-tighter bg-black text-white px-2 py-1">MERIDIAN.AI</span>
+        <span className="text">Let's get you onboard!</span>
+      </motion.h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5">
+
         <div className="grid grid-cols-2 gap-2.5">
-          {" "}
-          {/* Reduced gap */}
           <motion.div custom={1} variants={inputVariants} initial="hidden" animate="visible">
-            <Label htmlFor="firstNameReg" className="text-xs font-semibold text-white">
+            <Label htmlFor="firstNameReg" className="text-xs ">
               First Name
             </Label>
             <Input
               id="firstNameReg"
               {...register("firstName")}
-              className="mt-0.5 text-sm bg-transparent text-white placeholder:text-gray-400 border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5" // Reduced mt & py
+              type="text"
+              className="mt-0.5 text-sm bg-transparent border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5"
             />
             {errors.firstName && <p className="text-xs text-red-400 mt-0.5">{errors.firstName.message}</p>}
           </motion.div>
           <motion.div custom={2} variants={inputVariants} initial="hidden" animate="visible">
-            <Label htmlFor="lastNameReg" className="text-xs font-semibold text-white">
+            <Label htmlFor="lastNameReg" className="text-xs ">
               Last Name
             </Label>
             <Input
               id="lastNameReg"
               {...register("lastName")}
-              className="mt-0.5 text-sm bg-transparent text-white placeholder:text-gray-400 border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5" // Reduced mt & py
+              type="text"
+              className="mt-0.5 text-sm bg-transparent border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5"
             />
             {errors.lastName && <p className="text-xs text-red-400 mt-0.5">{errors.lastName.message}</p>}
           </motion.div>
         </div>
         <motion.div custom={3} variants={inputVariants} initial="hidden" animate="visible">
-          <Label htmlFor="emailReg" className="text-xs font-semibold text-white">
+          <Label htmlFor="emailReg" className="text-xs ">
             Email
           </Label>
           <Input
             id="emailReg"
             type="email"
             {...register("email")}
-            className="mt-0.5 text-sm bg-transparent text-white placeholder:text-gray-400 border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5" // Reduced mt & py
+            className="mt-0.5 text-sm bg-transparent   border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5"
           />
           {errors.email && <p className="text-xs text-red-400 mt-0.5">{errors.email.message}</p>}
         </motion.div>
-        {/* Password fields now in a grid for side-by-side layout */}
         <div className="grid grid-cols-2 gap-2.5">
           <motion.div custom={4} variants={inputVariants} initial="hidden" animate="visible">
-            <Label htmlFor="passwordReg" className="text-xs font-semibold text-white">
+            <Label htmlFor="passwordReg" className="text-xs ">
               Password
             </Label>
             <Input
               id="passwordReg"
               type="password"
               {...register("password")}
-              className="mt-0.5 text-sm bg-transparent text-white placeholder:text-gray-400 border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5" // Reduced mt & py
+              className="mt-0.5 text-sm bg-transparent   border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5"
             />
             {errors.password && <p className="text-xs text-red-400 mt-0.5">{errors.password.message}</p>}
           </motion.div>
           <motion.div custom={5} variants={inputVariants} initial="hidden" animate="visible">
-            <Label htmlFor="confirmPasswordReg" className="text-xs font-semibold text-white">
+            <Label htmlFor="confirmPasswordReg" className="text-xs ">
               Confirm Password
             </Label>
             <Input
               id="confirmPasswordReg"
               type="password"
               {...register("confirmPassword")}
-              className="mt-0.5 text-sm bg-transparent text-white placeholder:text-gray-400 border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5" // Reduced mt & py
+              className="mt-0.5 text-sm bg-transparent   border-0 border-b-2 border-gray-500 focus:border-[#BFFA00] focus:ring-0 px-1 py-1.5"
             />
             {errors.confirmPassword && <p className="text-xs text-red-400 mt-0.5">{errors.confirmPassword.message}</p>}
           </motion.div>
         </div>
         <motion.div custom={6} variants={inputVariants} initial="hidden" animate="visible" className="pt-1.5">
-          {" "}
-          {/* Reduced pt */}
           <Button
             type="submit"
-            className="w-full rounded-lg py-2.5 text-sm bg-[#BFFA00] text-black hover:bg-lime-400 font-semibold" // Reduced py
+            className="w-full rounded-lg py-2.5 text-sm bg-[#BFFA00] text-black hover:bg-lime-400 font-semibold"
           >
             Continue
           </Button>
@@ -151,7 +152,7 @@ export function RegisterStep1Form({ onNext, onSwitchToLogin }: RegisterStep1Form
         variants={inputVariants}
         initial="hidden"
         animate="visible"
-        className="text-center text-xs text-white mt-3" // Reduced mt, changed text color for better contrast
+        className="text-center text-xs  mt-4" // Increased mt slightly
       >
         Already have an account?{" "}
         <button onClick={onSwitchToLogin} className="font-semibold text-[#BFFA00] hover:text-lime-300">

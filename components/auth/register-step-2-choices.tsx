@@ -1,10 +1,10 @@
+// No changes from previous version, but ensuring it fits modal context
 "use client"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-// CheckCircle can be kept for selected badges if desired, or removed for pure text badges
-// For now, let's remove icons from badges as requested.
+import { InfoIcon } from "lucide-react"
 
 interface RegisterStep2ChoicesProps {
   onNext: (data: { interests: string[] }) => void
@@ -28,7 +28,7 @@ const badgeContainerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05, // Stagger animation for each badge
+      staggerChildren: 0.05,
     },
   },
 }
@@ -58,7 +58,7 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
       } else if (prev.length < MAX_SELECTIONS) {
         return [...prev, interest]
       }
-      return prev // Max selections reached, do not add
+      return prev
     })
   }
 
@@ -67,7 +67,7 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
   }
 
   const handleSkip = () => {
-    onNext({ interests: [] }) // Send empty array if skipped
+    onNext({ interests: [] })
   }
 
   return (
@@ -76,29 +76,40 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col h-full items-center justify-center w-full"
+      className="relative flex flex-col h-full items-center bg-white p-6 rounded-xl"
     >
+      <span className="absolute inset-x-0 bottom-0 h-4 bg-[#BFFF00] z-0 transform translate-y-1"></span>
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.4 }}
-        className="text-2xl font-semibold text-center text-[#BFFA00] mb-4" // Reduced mb
+        className="text-2xl font-semibold tracking-tight text-center mb-4"
       >
-        Welcome to MERIDIAN.AI
+        Welcome to <span className="tracking-tighter bg-black text-white px-2 py-1">MERIDIAN.AI</span>
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="text-lg text-white text-center mb-2"
+        className="text-sm text-center mb-2"
       >
         What are you looking for?
       </motion.p>
       <motion.p
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.4 }}
+        className="text-xs text-center text-neutral-400 mb-2 flex items-center"
+      >
+        <InfoIcon className="inline mr-1 h-3 w-3" />
+        
+        We store this information to personalize our search results. 
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.4 }}
-        className="text-xs text-neutral-400 text-center mb-5" // Reduced mb
+        className="text-xs text-neutral-400 text-center mb-5"
       >
         Choose up to {MAX_SELECTIONS}
       </motion.p>
@@ -107,7 +118,7 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
         variants={badgeContainerVariants}
         initial="hidden"
         animate="visible"
-        className="flex flex-wrap justify-center gap-2.5 mb-6 w-full max-w-md" // Reduced gap & mb
+        className="flex flex-wrap justify-center gap-2.5 mb-6 w-full max-w-md"
       >
         {interestOptions.map((interest) => (
           <motion.button
@@ -115,11 +126,11 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
             variants={badgeItemVariants}
             onClick={() => toggleInterest(interest)}
             disabled={selectedInterests.length >= MAX_SELECTIONS && !selectedInterests.includes(interest)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium border-2 transition-all duration-200 ease-out
+            className={`px-2 py-1 rounded-lg text-xs border-2 transition-all duration-200 ease-out 
               ${
                 selectedInterests.includes(interest)
-                  ? "border-[#BFFA00] bg-lime-500/20 text-[#BFFA00]"
-                  : "border-gray-600 text-neutral-300 hover:border-gray-500 hover:bg-neutral-800/60 disabled:opacity-50 disabled:cursor-not-allowed"
+                  ? "border-[#BFFA00] bg-lime-500/20"
+                  : "border-gray-600 hover:border-gray-500 hover:bg-neutral-800/60 disabled:opacity-50 disabled:cursor-not-allowed"
               }`}
           >
             {interest}
@@ -131,19 +142,20 @@ export function RegisterStep2Choices({ onNext }: RegisterStep2ChoicesProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="w-full max-w-xs space-y-3" // Added space-y for button and skip link
+        className="w-full max-w-xs flex items-center gap-4 justify-center"
       >
         <Button
           onClick={handleNext}
+          variant="default"
           disabled={selectedInterests.length === 0}
-          className="w-full rounded-lg py-2.5 text-sm bg-[#BFFA00] text-black hover:bg-lime-400 font-semibold disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed"
+          className=" rounded-lg py-2.5 text-xs disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed"
         >
-          Next: Your Name
+          Continue
         </Button>
         <Button
           variant="outline"
           onClick={handleSkip}
-          className="w-full rounded-lg py-2.5 text-sm border-neutral-600 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300"
+          className=" rounded-lg py-2.5 text-xs border-neutral-600"
         >
           Skip for now
         </Button>

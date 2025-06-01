@@ -1,4 +1,4 @@
-// No changes from previous version
+// No changes from previous version, but ensuring it fits modal context
 "use client"
 
 import { useForm, type SubmitHandler } from "react-hook-form"
@@ -44,7 +44,7 @@ export function RegisterStep3Nickname({ onFinish }: RegisterStep3NicknameProps) 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.4 }}
-        className="text-2xl font-semibold text-center text-[#BFFA00] mb-8"
+        className="text-5xl text-white tracking-tighter bg-black px-2 py-1 font-semibold text-center mb-8"
       >
         What should we call you?
       </motion.h2>

@@ -4,7 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Meridian.ai",
+  title: "meridian.ai",
   description: "Your AI Travel Planner",
 };
 
