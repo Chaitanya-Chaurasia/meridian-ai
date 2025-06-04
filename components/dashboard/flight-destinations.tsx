@@ -90,9 +90,9 @@ export function FlightHotelBooking() {
   return (
     <section className="py-12 mt-42 relative">
       <div className="relative z-10 container mx-auto px-4">
-        <div className="mb-36 text-center">
+        <div className="mb-28 text-center">
           <h2
-            className={`text-5xl font-semibold tracking-tighter ${fonts.playfairDisplay} mb-4`}
+            className={`text-7xl font-semibold tracking-tighter ${fonts.playfairDisplay} mb-4`}
           >
             <span className="text-indigo-300">flights, </span>
             <span className="text-red-300">cars, </span>

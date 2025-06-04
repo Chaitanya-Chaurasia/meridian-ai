@@ -9,7 +9,7 @@ interface SuggestedPromptsProps {
 export function SuggestedPrompts({ onPromptSelect }: SuggestedPromptsProps) {
   const prompts = [
     "Plan a 3-day trip to Prague!",
-    "How do I go from JFK to Times Square?",
+    "How do I get a B1 US visa?",
     "Fine dining in Delhi, India (I'm on a diet)",
   ]
 
@@ -21,7 +21,7 @@ export function SuggestedPrompts({ onPromptSelect }: SuggestedPromptsProps) {
           <Badge
             key={index}
             variant="outline"
-            className="cursor-pointer text-xs px-3 py-1 bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 tracking-tight transition-colors"
+            className="cursor-pointer text-xs px-3 py-1 bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300 tracking-tight transition-colors"
             onClick={() => onPromptSelect(prompt)}
           >
             {prompt}

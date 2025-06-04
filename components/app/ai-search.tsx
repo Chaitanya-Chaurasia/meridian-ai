@@ -23,7 +23,7 @@ export function AiSearch() {
         />
         <Button
           size="sm"
-          className="absolute right-1.5 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 bg-black hover:bg-gray-800 rounded-md"
+          className="absolute right-1.5 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 bg-black hover:bg-gray-800 rounded-full"
         >
           <Send className="w-3 h-3" />
         </Button>

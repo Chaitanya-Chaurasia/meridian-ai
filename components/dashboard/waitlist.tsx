@@ -60,7 +60,7 @@ export function Waitlist() {
                 waitlist
               </span>
               <p className="text-2xl font-medium tracking-tighter">
-                You type, we book, as simple as that!
+                You type, we book- as simple as that!
               </p>
             </h2>
           </div>

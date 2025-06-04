@@ -92,7 +92,7 @@ export function NatureRetreats() {
   }
 
   return (
-    <section className="mt-42 bg-white">
+    <section className="mt-32 bg-white">
       <div className="container mx-auto px-4">
         <div className="mb-42 text-center">
           <h2 className="text-5xl font-semibold tracking-tighter mb-2">

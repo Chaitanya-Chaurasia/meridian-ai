@@ -31,13 +31,13 @@ export function Header() {
           className={`rounded-lg px-1 py-1 transition-all duration-300 max-w-4xl w-full ${
             isScrolled
               ? "bg-white/80 backdrop-blur-md shadow-lg"
-              : "bg-white/10 backdrop-blur-sm"
+              : "bg-white"
           }`}
         >
           <div className="flex items-center justify-between">
             <span
-              className={`tracking-tighter rounded-lg px-2 py-2 font-medium text-sm transition-colors ${
-                isScrolled ? "text-white bg-black" : "text-black bg-white"
+              className={`tracking-tighter rounded-md px-2 py-2 font-medium text-sm transition-colors ${
+                "text-white bg-black"
               }`}
             >
               MERIDIAN.AI
@@ -46,82 +46,76 @@ export function Header() {
             <NavigationMenu className="hidden md:flex">
               <NavigationMenuList className="space-x-2">
                 <NavigationMenuItem>
-                  <Link href="/" passHref>
                     <NavigationMenuLink
+                      href="/"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? " hover:text-blue-500"
+                          : " hover:text-blue-200"
                       }`}
                     >
                       Home
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/service" passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink
+                      href="/service"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? "hover:text-blue-500"
+                          : "hover:text-blue-200"
                       }`}
                     >
                       Trending
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/pricing" passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink
+                      href="/pricing"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? "hover:text-blue-500"
+                          : "hover:text-blue-200"
                       }`}
                     >
                       Flights & Hotels
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/about" passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink
+                      href="/about"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? "hover:text-blue-500"
+                          : "hover:text-blue-200"
                       }`}
                     >
                       Your Trips
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/about" passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink
+                      href="/explore"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? "hover:text-blue-500"
+                          : "hover:text-blue-200"
                       }`}
                     >
                       Explore
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/service" passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink
+                      href="/service"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
+                          ? "hover:text-blue-500"
+                          : "hover:text-blue-200"
                       }`}
                     >
                       Nature Retreats
                     </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -132,7 +126,7 @@ export function Header() {
                 className={`text-xs transition-colors ${
                   isScrolled
                     ? "bg-blue-500 text-white hover:bg-blue-600"
-                    : "bg-white text-gray-900 hover:bg-gray-100"
+                    : "bg-black text-white hover:bg-gray-700"
                 }`}
               >
                 Get Started

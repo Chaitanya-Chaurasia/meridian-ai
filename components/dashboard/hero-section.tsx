@@ -31,7 +31,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-white/90 text-xs mb-8 max-w-2xl mx-auto ">
-          Let our AI create personalized itineraries and find the best deals for
+          From flights to Uber to food, let our AI create personalized itineraries and find the best deals for
           your dream vacation
         </p>
 
