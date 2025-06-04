@@ -7,7 +7,7 @@ export function LogoDisplay() {
     <Link href="/" className="">
       <Image
         src={logo}
-        alt="PIXLS Logo"
+        alt="MERIDIAN.AI Logo"
         width={100}
         height={30}
         priority

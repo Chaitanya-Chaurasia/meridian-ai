@@ -1,13 +1,18 @@
-"use client"
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-
+import { HeroSection } from "@/components/dashboard/hero-section"
+import { DestinationsSection } from "@/components/dashboard/destination-section"
+import { CompanyLogos } from "@/components/dashboard/company-logos"
+import { TrendingDestinations } from "@/components/dashboard/trending-destinations"
+import { NatureRetreats } from "@/components/dashboard/nature-retreats"
+import { FlightHotelBooking } from "@/components/dashboard/flight-destinations"
 export default function Home() {
-  const router = useRouter();
   return (
-    <div >
-      <Button variant="default" onClick={() => {router.push("/login")}} >Login</Button>
-      <Button variant="outline" onClick={() => {router.push("/register")}} >Register</Button>
-    </div>
-  );
+    <main className="min-h-screen p-1">
+      <HeroSection />
+      <TrendingDestinations />
+      <FlightHotelBooking />
+      <NatureRetreats />  
+      <CompanyLogos />
+      <DestinationsSection />
+    </main>
+  )
 }

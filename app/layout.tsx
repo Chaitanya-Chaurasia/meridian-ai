@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Header } from "@/components/app/header"
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "meridian.ai",
-  description: "Your AI Travel Planner",
+  description: "Your AI Travel Companion",
 };
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} ${GeistSans.className} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
