@@ -36,8 +36,8 @@ export function Header() {
         >
           <div className="flex items-center justify-between">
             <span
-              className={`tracking-tighter rounded-lg bg-white px-2 py-2 font-medium text-sm transition-colors ${
-                isScrolled ? "text-gray-900" : "text-black"
+              className={`tracking-tighter rounded-lg px-2 py-2 font-medium text-sm transition-colors ${
+                isScrolled ? "text-white bg-black" : "text-black bg-white"
               }`}
             >
               MERIDIAN.AI
@@ -93,6 +93,19 @@ export function Header() {
                           : "text-white hover:text-blue-200"
                       }`}
                     >
+                      Your Trips
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/about" passHref>
+                    <NavigationMenuLink
+                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
+                        isScrolled
+                          ? "text-gray-700 hover:text-blue-500"
+                          : "text-white hover:text-blue-200"
+                      }`}
+                    >
                       Explore
                     </NavigationMenuLink>
                   </Link>
@@ -107,19 +120,6 @@ export function Header() {
                       }`}
                     >
                       Nature Retreats
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/about" passHref>
-                    <NavigationMenuLink
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "text-gray-700 hover:text-blue-500"
-                          : "text-white hover:text-blue-200"
-                      }`}
-                    >
-                      About Us
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
