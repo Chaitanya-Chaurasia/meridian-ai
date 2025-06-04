@@ -12,11 +12,10 @@ export function NatureRetreats() {
   const retreats = [
     {
       id: 1,
-      city: "Serenggeti",
+      city: "Serengeti",
       country: "Tanzania",
       image: n1,
-      rating: 2,
-      difficulty: "Easy",
+      rating: 2.0,
       costs: {
         flights: 1200,
         hotels: 80,
@@ -33,7 +32,6 @@ export function NatureRetreats() {
       country: "Chile & Argentina",
       image: n2,
       rating: 4.8,
-      difficulty: "Moderate",
       costs: {
         flights: 650,
         hotels: 120,
@@ -49,8 +47,7 @@ export function NatureRetreats() {
       city: "Kanchenjunga",
       country: "India",
       image: n3,
-      rating: 5,
-      difficulty: "Expert",
+      rating: 5.0,
       costs: {
         flights: 900,
         hotels: 25,
@@ -67,7 +64,6 @@ export function NatureRetreats() {
       country: "Egypt",
       image: n4,
       rating: 2.5,
-      difficulty: "Easy",
       costs: {
         flights: 1100,
         hotels: 90,
@@ -102,12 +98,11 @@ export function NatureRetreats() {
           <h2 className="text-5xl font-semibold tracking-tighter mb-2">
             <span className={`text-green-600 ${fonts.playfairDisplay}`}>Nature</span>-Retreats
           </h2>
-          <p className="text-gray-600 text-sm">Escape to pristine wilderness and breathtaking landscapes</p>
+          <p className="text-gray-600 text-sm">Escape to pristine wilderness and breathtaking landscapes.</p>
           <p className="text-gray-600 text-sm">Adventure awaits in the world's most stunning natural destinations</p>
         </div>
 
         <div className="grid grid-cols-4 grid-rows-1 gap-1  h-[600px]">
-
           {retreats.map((retreat, index) => (
             <div key={retreat.id} className="relative overflow-hidden rounded-lg group cursor-pointer">
               <Image
@@ -120,7 +115,6 @@ export function NatureRetreats() {
 
               <div className="absolute inset-0 p-4 flex flex-col justify-between">
                 <div className="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Badge className={`text-xs ${getDifficultyColor(retreat.difficulty)}`}>{retreat.difficulty}</Badge>
                   <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm rounded-full px-2 py-1">
                     <Trees className="w-3 h-3 text-white" />
                     <span className="text-white text-xs">{retreat.duration}</span>
@@ -135,7 +129,7 @@ export function NatureRetreats() {
                     </h3>
                     <div className="flex items-center gap-1 mb-2">
                       <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                      <span className="text-white text-xs font-medium">{retreat.rating}</span>
+                      <span className="text-white text-xs font-medium">{retreat.rating.toFixed(1)}</span>
                     </div>
                     <p className="text-white/80 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {retreat.description}

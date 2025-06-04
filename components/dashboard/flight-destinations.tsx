@@ -14,6 +14,8 @@ import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import { fonts } from "@/lib/utils"
+import Image from "next/image"
+import book from "@/public/book.jpg"
 
 export function FlightHotelBooking() {
   const router = useRouter()
@@ -61,28 +63,45 @@ export function FlightHotelBooking() {
   }
 
   return (
-    <section className="py-12 bg-gray-50 mt-42">
-      <div className="container mx-auto px-4">
+    <section className="py-12 mt-1 relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={book || "/placeholder.svg"}
+          alt="Travel booking background"
+          fill
+          className="object-cover rounded-lg"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/40 rounded-lg" />
+        {/* Fade to white gradient from bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white rounded-lg" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4">
         <div className="mb-16 text-center">
-          <h2 className={`text-5xl font-semibold ${fonts.playfairDisplay} tracking-tighter mb-4`}>
-            <span className="text-indigo-400">flights, </span>
-            <span className="text-red-400">cars, </span>
-            and <span className="text-lime-400">hotels,</span>
+          <h2 className={`text-5xl font-semibold ${fonts.playfairDisplay} tracking-tighter mb-4 text-white`}>
+            <span className="text-indigo-300">flights, </span>
+            <span className="text-red-300">cars, </span>
+            and <span className="text-lime-300">hotels,</span>
           </h2>
-          <h2 className="text-4xl font-semibold tracking-tighter underline decoration-sky-500">all in one place!</h2>
+          <h2 className="text-4xl font-semibold tracking-tighter underline decoration-sky-400 text-white">
+            all in one place!
+          </h2>
         </div>
 
-        <Card className="max-w-6xl mx-auto shadow-lg">
-          <CardContent className="p-4">
-            <div className="grid grid-cols-4 gap-3 mb-4">
-              <div className="space-y-1">
-                <Label className="text-xs font-medium text-gray-700">From</Label>
-                <div className="flex items-center gap-1">
+        <Card className="max-w-6xl mx-auto shadow-2xl bg-white/95 backdrop-blur-sm border-0">
+          <CardContent className="p-6">
+            <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">From</Label>
+                <div className="flex items-center gap-2">
                   <Input
                     value={departure}
                     onChange={(e) => setDeparture(e.target.value)}
                     placeholder="Enter departure city"
-                    className="h-12 bg-gray-50 border text-sm"
+                    className="h-12 bg-white border-gray-200 text-sm shadow-sm"
                   />
                   <Button
                     variant="ghost"
@@ -90,29 +109,29 @@ export function FlightHotelBooking() {
                     onClick={handleSwap}
                     className="h-8 w-8 rounded-full bg-blue-50 hover:bg-blue-100 flex-shrink-0"
                   >
-                    <ArrowLeftRight className="h-3 w-3 text-blue-600" />
+                    <ArrowLeftRight className="h-4 w-4 text-blue-600" />
                   </Button>
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <Label className="text-xs font-medium text-gray-700">To</Label>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">To</Label>
                 <Input
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   placeholder="Enter destination city"
-                  className="h-12 bg-gray-50 border text-sm"
+                  className="h-12 bg-white border-gray-200 text-sm shadow-sm"
                 />
               </div>
 
-              <div className="space-y-1">
-                <Label className="text-xs font-medium text-gray-700">Date In</Label>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">Date In</Label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant="ghost"
                       className={cn(
-                        "h-12 w-full justify-start text-left font-normal border bg-gray-50 hover:bg-gray-100 text-sm",
+                        "h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-sm shadow-sm",
                         !departureDate && "text-muted-foreground",
                       )}
                     >
@@ -130,15 +149,15 @@ export function FlightHotelBooking() {
                 </Popover>
               </div>
 
-              <div className="space-y-1">
-                <Label className="text-xs font-medium text-gray-700">Date Out</Label>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700">Date Out</Label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant="ghost"
                       disabled={tripType === "oneway"}
                       className={cn(
-                        "h-12 w-full justify-start text-left font-normal border bg-gray-50 hover:bg-gray-100 text-sm",
+                        "h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-sm shadow-sm",
                         tripType === "oneway" && "opacity-50 cursor-not-allowed",
                         !returnDate && "text-muted-foreground",
                       )}
@@ -160,43 +179,44 @@ export function FlightHotelBooking() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1">
                   {transportModes.map((transportMode) => {
                     const IconComponent = transportMode.icon
                     return (
                       <Button
+                        variant="ghost"
                         key={transportMode.value}
                         onClick={() => setMode(transportMode.value)}
                         className={cn(
-                          "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-colors",
+                          "flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                           mode === transportMode.value
-                            ? "bg-blue-100 text-blue-700"
+                            ? "bg-blue-100 text-blue-700 shadow-sm"
                             : "bg-gray-100 text-gray-600 hover:bg-gray-200",
                         )}
                       >
-                        <IconComponent className="h-3 w-3" />
+                        <IconComponent className="h-4 w-4" />
                         {transportMode.label}
                       </Button>
                     )
                   })}
                 </div>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   <Checkbox
                     id="includeHotels"
                     checked={includeHotels}
                     onCheckedChange={(checked) => setIncludeHotels(!!checked)}
-                    className="h-3 w-3"
+                    className="h-4 w-4"
                   />
-                  <Label htmlFor="includeHotels" className="text-xs cursor-pointer">
+                  <Label htmlFor="includeHotels" className="text-sm cursor-pointer font-medium">
                     Include Hotels
                   </Label>
                 </div>
 
                 <Select value={classType} onValueChange={setClassType}>
-                  <SelectTrigger className="w-24 h-8 text-xs">
+                  <SelectTrigger className="w-32 h-10 text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -206,34 +226,37 @@ export function FlightHotelBooking() {
                   </SelectContent>
                 </Select>
 
-                <div className="flex items-center gap-2">
-                  <label className="flex items-center gap-1 cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
                       name="tripType"
                       value="oneway"
                       checked={tripType === "oneway"}
                       onChange={(e) => setTripType(e.target.value)}
-                      className="w-3 h-3 text-blue-600"
+                      className="w-4 h-4 text-blue-600"
                     />
-                    <span className="text-xs font-medium">One Way</span>
+                    <span className="text-sm font-medium">One Way</span>
                   </label>
-                  <label className="flex items-center gap-1 cursor-pointer">
+                  <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
                       name="tripType"
                       value="roundtrip"
                       checked={tripType === "roundtrip"}
                       onChange={(e) => setTripType(e.target.value)}
-                      className="w-3 h-3 text-blue-600"
+                      className="w-4 h-4 text-blue-600"
                     />
-                    <span className="text-xs font-medium">Round Trip</span>
+                    <span className="text-sm font-medium">Round Trip</span>
                   </label>
                 </div>
               </div>
 
-              <Button onClick={handleSearch} variant="default" className="px-6 py-2 text-sm">
-                <Search className="w-3 h-3 " />
+              <Button
+                onClick={handleSearch}
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-sm font-medium shadow-lg"
+              >
+                <Search className="w-4 h-4 mr-2" />
                 Search
               </Button>
             </div>
