@@ -10,10 +10,42 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/auth/auth-modal";
+import { usePathname, useSearchParams } from 'next/navigation';
+
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Handle scroll to section when the URL has a hash
+  useEffect(() => {
+    if (pathname === '/') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }, 100);
+        }
+      }
+    }
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +91,11 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/service"
+                      href="#trending"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(e, 'trending');
+                      }}
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
                           ? "hover:text-blue-500"
@@ -71,7 +107,11 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/pricing"
+                      href="#flights"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(e, 'flights');
+                      }}
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
                           ? "hover:text-blue-500"
@@ -83,7 +123,7 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/about"
+                      href="/your-trips"
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
                           ? "hover:text-blue-500"
@@ -107,7 +147,11 @@ export function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/service"
+                      href="#nature"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(e, 'nature');
+                      }}
                       className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
                         isScrolled
                           ? "hover:text-blue-500"

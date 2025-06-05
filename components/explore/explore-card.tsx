@@ -18,22 +18,22 @@ export function ExploreCard({ place, country, image, size = "small" }: ExploreCa
   }
 
   const textSizes = {
-    small: "text-sm",
-    wide: "text-base",
-    tall: "text-2xl",
-    large: "text-5xl",
+    small: "text-4xl",
+    wide: "text-7xl",
+    tall: "text-7xl",
+    large: "text-7xl",
   }
 
   const subtextSizes = {
-    small: "text-xs",
-    wide: "text-sm",
-    tall: "text-sm",
-    large: "text-base",
+    small: "text-lg",
+    wide: "text-xl",
+    tall: "text-xl",
+    large: "text-2xl",
   }
 
   return (
     <div
-      className={cn("relative overflow-hidden rounded-md group cursor-pointer min-h-[200px]", sizeClasses[size])}
+      className={cn("relative overflow-hidden rounded-lg group cursor-pointer", sizeClasses[size])}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -43,13 +43,13 @@ export function ExploreCard({ place, country, image, size = "small" }: ExploreCa
           alt={`${place}, ${country}`}
           fill
           className={cn(
-            "object-cover transition-transform duration-500",
+            "object-cover transition-transform duration-500 bg-lime-500/10",
             isHovering ? "scale-110 brightness-75" : "scale-100",
           )}
         />
         <div
           className={cn(
-            "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300",
+            "absolute inset-0 transition-opacity duration-300 z-2",
             isHovering ? "opacity-100" : "opacity-70",
           )}
         />

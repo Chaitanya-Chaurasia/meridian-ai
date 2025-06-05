@@ -5,7 +5,7 @@ import Image from "next/image";
 import { fonts } from "@/lib/utils";
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative min-h-screen flex items-center justify-center" id="#home">
       <div className="absolute inset-0 z-0">
         <Image
           src={bg}
@@ -17,7 +17,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-black/20 rounded-xl" />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto" id="home" >
         <p className="text-white/90 text-xs mb-3">Your AI Travel Concierge</p>
 
         <h1 className="text-white tracking-tighter text-3xl md:text-5xl font-semibold leading-tighter mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">

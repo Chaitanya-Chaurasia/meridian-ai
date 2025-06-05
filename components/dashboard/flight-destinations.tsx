@@ -88,7 +88,7 @@ export function FlightHotelBooking() {
   ];
 
   return (
-    <section className="py-12 mt-42 relative">
+    <section className="py-12 mt-42 relative" id="flights">
       <div className="relative z-10 container mx-auto px-4">
         <div className="mb-28 text-center">
           <h2

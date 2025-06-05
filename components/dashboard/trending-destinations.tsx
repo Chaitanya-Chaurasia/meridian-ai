@@ -92,7 +92,7 @@ export function TrendingDestinations() {
     <section className="mt-42 bg-gray-50">
       <div className="container mx-auto">
         <div className="mb-32 text-center">
-          <h2 className="text-5xl font-semibold tracking-tighter mb-2">
+          <h2 className="text-5xl font-semibold tracking-tighter mb-2" id="trending">
             Trending-<span className={`text-red-200 ${fonts.playfairDisplay}`}>Destinations</span>
           </h2>
           <p className="text-gray-600 text-sm">Discover the most popular travel spots this season</p>

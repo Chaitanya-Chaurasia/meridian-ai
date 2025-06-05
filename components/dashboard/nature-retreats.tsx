@@ -76,23 +76,8 @@ export function NatureRetreats() {
     },
   ]
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "Easy":
-        return "bg-green-500/20 text-green-300 border-green-400/30"
-      case "Moderate":
-        return "bg-yellow-500/20 text-yellow-300 border-yellow-400/30"
-      case "Challenging":
-        return "bg-orange-500/20 text-orange-300 border-orange-400/30"
-      case "Expert":
-        return "bg-red-500/20 text-red-300 border-red-400/30"
-      default:
-        return "bg-white/20 text-white border-white/30"
-    }
-  }
-
   return (
-    <section className="mt-32 bg-white">
+    <section className="mt-32 bg-white" id="nature">
       <div className="container mx-auto px-4">
         <div className="mb-42 text-center">
           <h2 className="text-5xl font-semibold tracking-tighter mb-2">
