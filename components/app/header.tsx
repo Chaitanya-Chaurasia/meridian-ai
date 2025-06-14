@@ -7,10 +7,11 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/auth/auth-modal";
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Home, TrendingUp, Plane, MapPin, Compass, Mountain } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
   e.preventDefault();
@@ -29,7 +30,6 @@ export function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Handle scroll to section when the URL has a hash
   useEffect(() => {
     if (pathname === '/') {
       const hash = window.location.hash.replace('#', '');
@@ -57,7 +57,7 @@ export function Header() {
   }, []);
 
   return (
-    <>
+    <TooltipProvider>
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
         <header
           className={`rounded-lg px-1 py-1 transition-all duration-300 max-w-4xl w-full ${
@@ -75,91 +75,148 @@ export function Header() {
               MERIDIAN.AI
             </span>
 
-            <NavigationMenu className="hidden md:flex">
-              <NavigationMenuList className="space-x-2">
+            <NavigationMenu>
+              <NavigationMenuList className="space-x-0.5 md:space-x-2">
+                {/* Home */}
                 <NavigationMenuItem>
-                    <NavigationMenuLink
-                      href="/"
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? " hover:text-blue-500"
-                          : " hover:text-blue-200"
-                      }`}
-                    >
+                  <NavigationMenuLink
+                    href="/"
+                    className={`flex items-center px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors tracking-tighter hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <Home className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Home</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
                       Home
-                    </NavigationMenuLink>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="#trending"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(e, 'trending');
-                      }}
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "hover:text-blue-500"
-                          : "hover:text-blue-200"
-                      }`}
-                    >
+                    href="#trending"
+                    onClick={(e) => scrollToSection(e, 'trending')}
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <TrendingUp className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Trending</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
                       Trending
-                    </NavigationMenuLink>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="#flights"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(e, 'flights');
-                      }}
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "hover:text-blue-500"
-                          : "hover:text-blue-200"
-                      }`}
-                    >
+                    href="#flights"
+                    onClick={(e) => scrollToSection(e, 'flights')}
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <Plane className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Flights & Hotels</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
                       Flights & Hotels
-                    </NavigationMenuLink>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/your-trips"
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "hover:text-blue-500"
-                          : "hover:text-blue-200"
-                      }`}
-                    >
+                    href="/your-trips"
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <MapPin className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Your Trips</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
                       Your Trips
-                    </NavigationMenuLink>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="/explore"
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "hover:text-blue-500"
-                          : "hover:text-blue-200"
-                      }`}
-                    >
+                    href="/explore"
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <Compass className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Explore</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
                       Explore
-                    </NavigationMenuLink>
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                      href="#nature"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(e, 'nature');
-                      }}
-                      className={`px-3 py-2 text-sm tracking-tighter font-medium rounded-lg transition-colors hover:bg-white/10 ${
-                        isScrolled
-                          ? "hover:text-blue-500"
-                          : "hover:text-blue-200"
-                      }`}
-                    >
-                      Nature Retreats
-                    </NavigationMenuLink>
+                    href="#nature"
+                    onClick={(e) => scrollToSection(e, 'nature')}
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <Mountain className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Nature</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
+                      Nature
+                    </span>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -184,6 +241,6 @@ export function Header() {
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
       />
-    </>
+    </TooltipProvider>
   );
 }

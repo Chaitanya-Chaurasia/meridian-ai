@@ -5,8 +5,17 @@ import { Input } from "@/components/ui/input";
 import { Sparkles, Send } from "lucide-react";
 import { useState } from "react";
 import { SuggestedPrompts } from "@/components/dashboard/suggested-prompts";
+import { useRouter } from "next/navigation";
 export function AiSearch() {
   const [query, setQuery] = useState("");
+
+  const router = useRouter()
+
+  const handleSendMessage = () => {
+    if (!query.trim()) return
+    router.push(`/your-trips?message=${encodeURIComponent(query)}`)
+  }
+
 
   return (
     <div className="relative max-w-xl mx-auto space-y-4">
@@ -23,7 +32,9 @@ export function AiSearch() {
         />
         <Button
           size="sm"
-          className="absolute right-1.5 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 bg-black hover:bg-gray-800 rounded-full"
+          onClick={handleSendMessage}
+          disabled={!query.trim()}
+          className="absolute hover:cursor-pointer right-1.5 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0 bg-black hover:bg-gray-800 rounded-full"
         >
           <Send className="w-3 h-3" />
         </Button>

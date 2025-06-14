@@ -77,7 +77,7 @@ export function FlightHotelBooking() {
       params.append("returnDate", returnDate.toISOString());
     }
 
-    router.push(`/#?${params.toString()}`);
+    router.push(`/your-trips?${params.toString()}`);
   };
 
   const partnerLogos = [
