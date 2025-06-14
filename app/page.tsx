@@ -12,7 +12,7 @@ export default function Home() {
         <FlightHotelBooking />
       </div>
       <NatureRetreats />
-      <div className="relative max-w-6xl mx-auto"> <Waitlist /></div>
+      <div className="relative max-w-6xl mx-auto" id="waitlist"> <Waitlist /></div>
     </main>
   );
 }

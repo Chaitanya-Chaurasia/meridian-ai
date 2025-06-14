@@ -11,3 +11,4 @@ const playfairDisplay = Playfair_Display({ subsets: ["latin"], style: "italic" }
 export const fonts = {
     playfairDisplay: playfairDisplay.className,
 }
+

@@ -1,12 +1,23 @@
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Star, Plane, Building, Car, ShoppingBag, Mountain, Trees, Compass } from "lucide-react"
+"use client"
+import { Star, Plane, Building, Car, ShoppingBag, Trees } from "lucide-react"
 import Image from "next/image"
 import { fonts } from "@/lib/utils"
 import n1 from "@/public/nature/n1.jpg"
 import n2 from "@/public/nature/n2.jpg"
 import n3 from "@/public/nature/n3.jpg"
 import n4 from "@/public/nature/n4.jpg"
+import Link from "next/link"
+
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
 
 export function NatureRetreats() {
   const retreats = [
@@ -140,12 +151,13 @@ export function NatureRetreats() {
                     </div>
                   </div>
 
-                  <Button
-                    size="sm"
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  <Link
+                    href="#waitlist"
+                    onClick={(e) => scrollToSection(e, 'waitlist')}
+                    className="inline-flex items-center rounded-lg justify-center px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     Plan Adventure
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>

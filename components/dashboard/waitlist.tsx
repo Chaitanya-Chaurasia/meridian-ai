@@ -117,8 +117,8 @@ export function Waitlist() {
                   <div className="flex items-center gap-1.5">
                     <div className="h-2 w-2 rounded-full bg-green-500"></div>
                     <p className="text-sm text-gray-600">
-                      You're not alone.{" "}
-                      <span className="font-medium">1,500+ people</span> joined!
+                      Hurry up.{" "}
+                      <span className="font-medium">1,500+ people</span> are already on the waitlist!
                     </p>
                   </div>
                 </div>

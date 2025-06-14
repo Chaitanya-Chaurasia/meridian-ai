@@ -59,27 +59,6 @@ export function FlightHotelBooking() {
     setDestination(temp);
   };
 
-  const handleSearch = () => {
-    const params = new URLSearchParams({
-      from: departure,
-      to: destination,
-      mode,
-      tripType,
-      classType,
-      includeHotels: includeHotels.toString(),
-    });
-
-    if (departureDate) {
-      params.append("departDate", departureDate.toISOString());
-    }
-
-    if (returnDate && tripType === "roundtrip") {
-      params.append("returnDate", returnDate.toISOString());
-    }
-
-    router.push(`/your-trips?${params.toString()}`);
-  };
-
   const partnerLogos = [
     { name: "Skyscanner", logo: sky },
     { name: "Airbnb", logo: airbnb },
@@ -293,11 +272,10 @@ export function FlightHotelBooking() {
               </div>
 
               <Button
-                onClick={handleSearch}
-                className="px-8 py-3 text-sm font-medium shadow-lg"
+                className="px-8 py-3 text-xs font-medium shadow-lg"
               >
                 <Search className="w-4 h-4" />
-                Search
+                Search (coming soon)
               </Button>
             </div>
           </CardContent>

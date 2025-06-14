@@ -9,9 +9,21 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/auth/auth-modal";
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Home, TrendingUp, Plane, MapPin, Compass, Mountain } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import Link from "next/link";
+
+const scrollToSectionButton = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
 
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
   e.preventDefault();
@@ -29,6 +41,7 @@ export function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const router = useRouter()
 
   useEffect(() => {
     if (pathname === '/') {
@@ -151,29 +164,6 @@ export function Header() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/your-trips"
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <MapPin className="w-5 h-5" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Your Trips</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
-                      Your Trips
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink
                     href="/explore"
                     className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
                       isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
@@ -218,19 +208,36 @@ export function Header() {
                     </span>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href="/about"
+                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                    }`}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="md:hidden">
+                          <Mountain className="w-5 h-5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>About Us</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <span className="hidden md:block text-sm font-medium">
+                      About Us
+                    </span>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center">
               <Button
-                onClick={() => setShowAuthModal(true)}
-                size="sm"
-                className={`text-xs transition-colors ${
-                  isScrolled
-                    ? "bg-blue-500 text-white hover:bg-blue-600"
-                    : "bg-black text-white hover:bg-gray-700"
-                }`}
+                onClick={(e) => scrollToSectionButton(e, 'waitlist')}
+                className={`text-xs transition-colors bg-blue-500 text-white hover:bg-blue-600`}
               >
-                Get Started
+                Join waitlist
               </Button>
             </div>
           </div>

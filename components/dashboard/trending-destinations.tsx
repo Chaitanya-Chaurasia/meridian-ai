@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
 import { Badge } from "@/components/ui/badge"
-import { Star, Plane, Building, Car, ShoppingBag } from "lucide-react"
+import { Building, Car, ShoppingBag, Plane, Star } from "lucide-react"
 import Image from "next/image"
 import t1 from "@/public/trending/t1.jpg"
 import t2 from "@/public/trending/t2.jpg"
@@ -8,6 +9,18 @@ import t3 from "@/public/trending/t3.jpg"
 import t4 from "@/public/trending/t4.jpg"
 import t5 from "@/public/trending/t5.jpg"
 import { fonts } from "@/lib/utils"
+import Link from "next/link"
+
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
 
 export function TrendingDestinations() {
   const destinations = [
@@ -151,12 +164,13 @@ export function TrendingDestinations() {
                   </div>
                 </div>
 
-                <Button
-                  size="sm"
-                  className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                <Link
+                  href="#waitlist"
+                  onClick={(e) => scrollToSection(e, 'waitlist')}
+                  className="w-full inline-flex items-center justify-center px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm border border-white/30 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 >
                   Explore Itinerary
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -214,12 +228,13 @@ export function TrendingDestinations() {
                     </div>
                   </div>
 
-                  <Button
-                    size="sm"
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  <Link
+                    href="#waitlist"
+                    onClick={(e) => scrollToSection(e, 'waitlist')}
+                    className="inline-flex items-center rounded-lg justify-center px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     Explore Itinerary
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>

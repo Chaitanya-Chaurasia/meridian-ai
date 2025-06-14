@@ -1,8 +1,21 @@
+"use client"
 import { AiSearch } from "@/components/app/ai-search";
-import { Button } from "@/components/ui/button";
 import bg from "@/public/login-right-2.jpg";
 import Image from "next/image";
 import { fonts } from "@/lib/utils";
+import Link from "next/link";
+
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center" id="#home">
@@ -44,12 +57,13 @@ export function HeroSection() {
             <div className="h-px bg-white/30 flex-1 max-w-20"></div>
           </div>
 
-          <Button
-            variant="outline"
-            className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm rounded-xl px-6 py-2 text-sm"
+          <Link
+            href="#flights"
+            onClick={(e) => scrollToSection(e, "flights")}
+            className="bg-white/10 border-white/30  text-white hover:bg-white/20 backdrop-blur-sm rounded-lg px-6 py-2 text-xs"
           >
             Browse the traditional way
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

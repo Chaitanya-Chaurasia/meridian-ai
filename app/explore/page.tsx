@@ -54,19 +54,19 @@ export default function ExplorePage() {
               destination
             </span>
           </h1>
-          <div className="relative max-w-md mx-auto mt-6 z-10">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 stroke-black" />
+          {/* <div className="relative max-w-md mx-auto mt-6 z-10">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 stroke-white z-50" />
             <Input
               type="text"
               placeholder="Type Macchu Picchu"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 rounded-full bg-white placeholder:text-gray-400 placeholder:text-xs"
+              className="pl-10 border-0 rounded-full bg-white/10 backdrop-blur placeholder:text-white placeholder:text-xs"
             />
-          </div>
+          </div> */}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 mt-48 lg:grid-cols-4 gap-[4px] auto-rows-[200px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-[4px] auto-rows-[200px]">
           <div className="fixed inset-0 z-1">
             <div className="absolute inset-0 bg-lime-400/10 transition-opacity duration-300" />
           </div>
