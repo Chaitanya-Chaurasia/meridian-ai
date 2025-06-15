@@ -205,3 +205,18 @@ main {
 .container {
   @apply max-w-none; 
 }
+
+@layer utilities {
+  .animate-scroll {
+    animation: scroll 15s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}

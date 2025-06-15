@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { ExploreCard } from "@/components/explore/explore-card";
 import { placesData } from "@/lib/places-data";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { fonts } from "@/lib/utils";
 import Image from "next/image";
 import bg from "@/public/explore.jpg";

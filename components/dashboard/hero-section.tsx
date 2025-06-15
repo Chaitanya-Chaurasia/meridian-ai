@@ -1,6 +1,6 @@
 "use client"
 import { AiSearch } from "@/components/app/ai-search";
-import bg from "@/public/login-right-2.jpg";
+import bg from "@/public/get-started.jpg";
 import Image from "next/image";
 import { fonts } from "@/lib/utils";
 import Link from "next/link";

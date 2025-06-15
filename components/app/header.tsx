@@ -108,7 +108,7 @@ export function Header() {
                         <p>Home</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       Home
                     </span>
                   </NavigationMenuLink>
@@ -132,7 +132,7 @@ export function Header() {
                         <p>Trending</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       Trending
                     </span>
                   </NavigationMenuLink>
@@ -156,7 +156,7 @@ export function Header() {
                         <p>Flights & Hotels</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       Flights & Hotels
                     </span>
                   </NavigationMenuLink>
@@ -179,7 +179,7 @@ export function Header() {
                         <p>Explore</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       Explore
                     </span>
                   </NavigationMenuLink>
@@ -203,7 +203,7 @@ export function Header() {
                         <p>Nature</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       Nature
                     </span>
                   </NavigationMenuLink>
@@ -225,7 +225,7 @@ export function Header() {
                         <p>About Us</p>
                       </TooltipContent>
                     </Tooltip>
-                    <span className="hidden md:block text-sm font-medium">
+                    <span className="hidden md:block text-xs font-medium">
                       About Us
                     </span>
                   </NavigationMenuLink>

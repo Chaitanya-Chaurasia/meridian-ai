@@ -1,18 +1,13 @@
-import { HeroSection } from "@/components/dashboard/hero-section";
-import { TrendingDestinations } from "@/components/dashboard/trending-destinations";
-import { NatureRetreats } from "@/components/dashboard/nature-retreats";
-import { FlightHotelBooking } from "@/components/dashboard/flight-destinations";
-import { Waitlist } from "@/components/dashboard/waitlist";
-export default function Home() {
+"use client";
+
+import { LandingHero } from "@/components/app/landing-hero";
+
+export default function About() {
   return (
-    <main className="min-h-screen p-1">
-      <HeroSection />
-      <TrendingDestinations />
-      <div className="relative">
-        <FlightHotelBooking />
+    <main className="min-h-screen">
+      <div className="h-full p-1">
+        <LandingHero />
       </div>
-      <NatureRetreats />
-      <div className="relative max-w-6xl mx-auto" id="waitlist"> <Waitlist /></div>
     </main>
   );
 }
