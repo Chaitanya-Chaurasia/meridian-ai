@@ -111,72 +111,14 @@ export function TrendingDestinations() {
           <p className="text-gray-600 text-sm">Discover the most popular travel spots this season</p>
         </div>
 
-        <div className="grid grid-cols-3 grid-rows-2 gap-1 h-[600px]">
-          <div className="row-span-full relative overflow-hidden rounded-lg group cursor-pointer">
-            <Image
-              src={destinations[4].image || "/placeholder.svg"}
-              alt={destinations[4].city}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-            <div className="absolute inset-0 p-6 flex flex-col justify-between">
-              <div className="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Badge className="bg-white/20 text-white border-white/30 text-xs">
-                  Comfort Score: {destinations[4].comfort}
-                </Badge>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-white font-semibold tracking-tighter text-5xl mb-2">
-                    {destinations[4].city}
-                    <span className={`block text-3xl ${fonts.playfairDisplay} font-normal`}>
-                      {destinations[4].country}
-                    </span>
-                  </h3>
-                  <div className="flex items-center gap-1 mb-2">
-                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white text-sm font-medium">{destinations[4].rating}</span>
-                  </div>
-                  <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {destinations[4].description}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex items-center gap-2 text-white/70">
-                    <Plane className="w-4 h-4" />
-                    <span>${destinations[4].costs.flights}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white/70">
-                    <Building className="w-4 h-4" />
-                    <span>${destinations[4].costs.hotels}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white/70">
-                    <Car className="w-4 h-4" />
-                    <span>${destinations[4].costs.carRentals}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white/70">
-                    <ShoppingBag className="w-4 h-4" />
-                    <span>${destinations[4].costs.shopping}</span>
-                  </div>
-                </div>
-
-                <Link
-                  href="#waitlist"
-                  onClick={(e) => scrollToSection(e, 'waitlist')}
-                  className="w-full inline-flex items-center justify-center px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm border border-white/30 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  Explore Itinerary
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {destinations.slice(0, 4).map((destination, index) => (
-            <div key={destination.id} className="relative overflow-hidden rounded-lg group cursor-pointer">
+        <div className="grid grid-cols-2 gap-1 h-auto md:grid-cols-3 md:grid-rows-2 md:h-[600px]">
+          {destinations.map((destination, index) => (
+            <div 
+              key={destination.id} 
+              className={`relative overflow-hidden rounded-lg group cursor-pointer h-[300px] md:h-auto ${
+                index === 4 ? 'col-span-2 md:col-span-1 md:row-span-full' : ''
+              }`}
+            >
               <Image
                 src={destination.image || "/placeholder.svg"}
                 alt={`${destination.city}, ${destination.country}`}
@@ -185,45 +127,57 @@ export function TrendingDestinations() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-              <div className="absolute inset-0 p-4 flex flex-col justify-between">
+              <div className={`absolute inset-0 flex flex-col justify-between ${
+                index === 4 ? 'p-6' : 'p-4'
+              }`}>
                 <div className="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Badge className="bg-white/20 text-white border-white/30 text-xs">
                     Comfort Score: {destination.comfort}
                   </Badge>
                 </div>
 
-                <div className="space-y-3">
+                <div className={index === 4 ? 'space-y-4' : 'space-y-3'}>
                   <div>
-                    <h3 className="text-white font-semibold tracking-tighter text-2xl mb-1">
+                    <h3 className={`text-white font-semibold tracking-tighter ${
+                      index === 4 ? 'text-5xl mb-2' : 'text-2xl mb-1'
+                    }`}>
                       {destination.city}
-                      <span className={`block text-xl ${fonts.playfairDisplay} font-normal`}>
+                      <span className={`block ${
+                        index === 4 ? 'text-3xl' : 'text-xl'
+                      } ${fonts.playfairDisplay} font-normal`}>
                         {destination.country}
                       </span>
                     </h3>
                     <div className="flex items-center gap-1 mb-2">
-                      <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                      <span className="text-white text-xs font-medium">{destination.rating}</span>
+                      <Star className={`${index === 4 ? 'w-4 h-4' : 'w-3 h-3'} text-yellow-400 fill-yellow-400`} />
+                      <span className={`text-white ${index === 4 ? 'text-sm' : 'text-xs'} font-medium`}>
+                        {destination.rating}
+                      </span>
                     </div>
-                    <p className="text-white/80 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className={`text-white/80 ${
+                      index === 4 ? 'text-sm' : 'text-xs'
+                    } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
                       {destination.description}
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex items-center gap-1 text-white/70">
-                      <Plane className="w-3 h-3" />
+                  <div className={`grid grid-cols-2 ${
+                    index === 4 ? 'gap-3 text-sm' : 'gap-2 text-xs'
+                  } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <div className="flex items-center gap-2 text-white/70">
+                      <Plane className={index === 4 ? 'w-4 h-4' : 'w-3 h-3'} />
                       <span>${destination.costs.flights}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-white/70">
-                      <Building className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-white/70">
+                      <Building className={index === 4 ? 'w-4 h-4' : 'w-3 h-3'} />
                       <span>${destination.costs.hotels}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-white/70">
-                      <Car className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-white/70">
+                      <Car className={index === 4 ? 'w-4 h-4' : 'w-3 h-3'} />
                       <span>${destination.costs.carRentals}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-white/70">
-                      <ShoppingBag className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-white/70">
+                      <ShoppingBag className={index === 4 ? 'w-4 h-4' : 'w-3 h-3'} />
                       <span>${destination.costs.shopping}</span>
                     </div>
                   </div>
@@ -231,7 +185,9 @@ export function TrendingDestinations() {
                   <Link
                     href="#waitlist"
                     onClick={(e) => scrollToSection(e, 'waitlist')}
-                    className="inline-flex items-center rounded-lg justify-center px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className={`inline-flex items-center justify-center px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm border border-white/30 text-white ${
+                      index === 4 ? 'w-full text-sm' : 'text-xs'
+                    } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   >
                     Explore Itinerary
                   </Link>

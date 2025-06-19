@@ -291,7 +291,7 @@ export function FlightHotelBooking() {
                 className="text-xs font-medium shadow-lg px-4 sm:px-6 py-2 h-10 sm:h-auto w-full sm:w-auto mt-2 sm:mt-0"
               >
                 <Search className="w-4 h-4" />
-                <span className="ml-2">Search</span>
+                <span>Search</span>
               </Button>
             </div>
           </CardContent>

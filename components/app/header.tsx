@@ -218,9 +218,9 @@ export function Header() {
             <div className="flex items-center">
               <Button
                 onClick={(e) => scrollToSectionButton(e, 'waitlist')}
-                className={`text-xs transition-colors bg-blue-500 text-white hover:bg-blue-600`}
+                className={`text-xs transition-colors bg-blue-500 text-white hover:bg-blue-600 gap-1`}
               >
-                Join waitlist
+                Join <span className="text-xs hidden md:block font-medium">Waitlist</span>
               </Button>
             </div>
           </div>

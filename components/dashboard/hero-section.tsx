@@ -43,7 +43,7 @@ export function HeroSection() {
           Every Destination With AI!
         </h1>
 
-        <p className="text-white/90 text-xs mb-8 max-w-2xl mx-auto ">
+        <p className="text-white/90 text-[10px] mb-8 max-w-2xl mx-auto ">
           From flights to Uber to food, let our AI create personalized itineraries and find the best deals for
           your dream vacation
         </p>

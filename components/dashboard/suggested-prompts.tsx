@@ -9,7 +9,7 @@ interface SuggestedPromptsProps {
 export function SuggestedPrompts({ onPromptSelect }: SuggestedPromptsProps) {
   const prompts = [
     "Plan a 3-day trip to Prague!",
-    "How do I get a B1 US visa?",
+    "How do I apply for a Schengen visa?",
     "Fine dining in Delhi, India (I'm on a diet)",
   ]
 

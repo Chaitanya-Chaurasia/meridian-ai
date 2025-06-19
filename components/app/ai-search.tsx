@@ -32,16 +32,6 @@ export function AiSearch() {
           placeholder="Where should we take you?"
           className="text-xs placeholder:text-gray-400 h-10 pl-18 pr-10 bg-white border border-gray-200 backdrop-blur-sm shadow-sm rounded-full focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-gray-300 transition-all"
         />
-        <div className="absolute right-1.5 top-1/2 transform -translate-y-1/2">
-          <Button
-            size="sm"
-            onClick={(e) => scrollToSection(e, "waitlist")}
-            disabled={!query.trim()}
-            className="relative hover:cursor-pointer p-0 bg-black hover:bg-gray-800 rounded-full group"
-          >
-            <Send className="w-3 h-3" />
-          </Button>
-        </div>
       </div>
       <div>
         <SuggestedPrompts onPromptSelect={setQuery} />
