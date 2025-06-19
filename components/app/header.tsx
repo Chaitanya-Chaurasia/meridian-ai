@@ -9,10 +9,9 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/auth/auth-modal";
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Home, TrendingUp, Plane, MapPin, Compass, Mountain } from "lucide-react";
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Home, TrendingUp, Plane, Compass, Mountain } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import Link from "next/link";
 
 const scrollToSectionButton = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
   e.preventDefault();
@@ -41,7 +40,7 @@ export function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter()
+  const isExplorePage = pathname === '/explore';
 
   useEffect(() => {
     if (pathname === '/') {
@@ -73,7 +72,11 @@ export function Header() {
     <TooltipProvider>
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
         <header
-          className={`rounded-lg px-1 py-1 transition-all duration-300 max-w-4xl w-full ${
+          className={`rounded-lg px-1 py-1 transition-all duration-300 w-full ${
+            isExplorePage 
+              ? 'max-w-sm' 
+              : 'max-w-4xl'
+          } ${
             isScrolled
               ? "bg-white/80 backdrop-blur-md shadow-lg"
               : "bg-white"
@@ -94,7 +97,7 @@ export function Header() {
                 <NavigationMenuItem>
                   <NavigationMenuLink
                     href="/"
-                    className={`flex items-center px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors tracking-tighter hover:bg-white/10 ${
+                    className={`flex items-center text-gray-500 px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
                       isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
                     }`}
                   >
@@ -114,122 +117,102 @@ export function Header() {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="#trending"
-                    onClick={(e) => scrollToSection(e, 'trending')}
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <TrendingUp className="w-5 h-5" />
+                {!isExplorePage && (
+                  <>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink
+                        href="#trending"
+                        onClick={(e) => scrollToSection(e, 'trending')}
+                        className={`flex items-center text-gray-500 px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                          isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                        }`}
+                      >
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="md:hidden">
+                              <TrendingUp className="w-5 h-5" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom">
+                            <p>Trending</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="hidden md:block text-xs font-medium">
+                          Trending
                         </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Trending</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-xs font-medium">
-                      Trending
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="#flights"
-                    onClick={(e) => scrollToSection(e, 'flights')}
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <Plane className="w-5 h-5" />
+                    <NavigationMenuItem>
+                      <NavigationMenuLink
+                        href="#flights"
+                        onClick={(e) => scrollToSection(e, 'flights')}
+                        className={`flex items-center text-gray-500 px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                          isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                        }`}
+                      >
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="md:hidden">
+                              <Plane className="w-5 h-5" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom">
+                            <p>Flights & Hotels</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="hidden md:block text-xs font-medium">
+                          Flights & Hotels
                         </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Flights & Hotels</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-xs font-medium">
-                      Flights & Hotels
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="/explore"
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <Compass className="w-5 h-5" />
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink
+                        href="/explore"
+                        className={`flex items-center text-gray-500 px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                          isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                        }`}
+                      >
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="md:hidden">
+                              <Compass className="w-5 h-5" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom">
+                            <p>Explore</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="hidden md:block text-xs font-medium">
+                          Explore
                         </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Explore</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-xs font-medium">
-                      Explore
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="#nature"
-                    onClick={(e) => scrollToSection(e, 'nature')}
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <Mountain className="w-5 h-5" />
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink
+                        href="#nature"
+                        onClick={(e) => scrollToSection(e, 'nature')}
+                        className={`flex items-center text-gray-500 px-2 py-2 md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
+                          isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
+                        }`}
+                      >
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <span className="md:hidden">
+                              <Mountain className="w-5 h-5" />
+                            </span>
+                          </TooltipTrigger>
+                          <TooltipContent side="bottom">
+                            <p>Nature</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="hidden md:block text-xs font-medium">
+                          Nature
                         </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Nature</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-xs font-medium">
-                      Nature
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="/about"
-                    className={`flex items-center px-2 py-2 tracking-tighter md:px-3 md:py-2 rounded-lg transition-colors hover:bg-white/10 ${
-                      isScrolled ? "hover:text-blue-500" : "hover:text-blue-200"
-                    }`}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="md:hidden">
-                          <Mountain className="w-5 h-5" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>About Us</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <span className="hidden md:block text-xs font-medium">
-                      About Us
-                    </span>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  </>
+                )}
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center">

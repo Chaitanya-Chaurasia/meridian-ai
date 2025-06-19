@@ -67,24 +67,24 @@ export function FlightHotelBooking() {
   ];
 
   return (
-    <section className="py-12 mt-42 relative" id="flights">
+    <section className="py-6 sm:py-12 mt-20 sm:mt-42 relative" id="flights">
       <div className="relative z-10 container mx-auto px-4">
-        <div className="mb-28 text-center">
+        <div className="mb-12 sm:mb-28 text-center px-2">
           <h2
-            className={`text-7xl font-semibold tracking-tighter ${fonts.playfairDisplay} mb-4`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter ${fonts.playfairDisplay} mb-3 sm:mb-4 leading-tight`}
           >
             <span className="text-indigo-300">flights, </span>
             <span className="text-red-300">cars, </span>
             and <span className="text-lime-300">hotels,</span>
           </h2>
-          <h2 className="text-4xl font-semibold tracking-tighter underline decoration-sky-400">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter underline decoration-sky-400">
             all in one place!
           </h2>
         </div>
 
         <Card className="max-w-6xl mx-auto shadow-lg bg-white/95 backdrop-blur-sm border-0">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-4 gap-4 mb-6">
+          <CardContent className="p-3 sm:p-4 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-gray-700">
                   From
@@ -93,8 +93,8 @@ export function FlightHotelBooking() {
                   <Input
                     value={departure}
                     onChange={(e) => setDeparture(e.target.value)}
-                    placeholder="Enter departure city"
-                    className="h-12 bg-white border-gray-200 text-sm shadow-sm"
+                    placeholder="From"
+                    className="h-10 sm:h-12 bg-white border-gray-200 text-sm shadow-sm"
                   />
                   <Button
                     variant="ghost"
@@ -112,8 +112,8 @@ export function FlightHotelBooking() {
                 <Input
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
-                  placeholder="Enter destination city"
-                  className="h-12 bg-white border-gray-200 text-sm shadow-sm"
+                  placeholder="To"
+                  className="h-10 sm:h-12 bg-white border-gray-200 text-sm shadow-sm"
                 />
               </div>
 
@@ -126,7 +126,7 @@ export function FlightHotelBooking() {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-sm shadow-sm",
+                        "h-10 sm:h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-xs sm:text-sm shadow-sm",
                         !departureDate && "text-muted-foreground"
                       )}
                     >
@@ -163,7 +163,7 @@ export function FlightHotelBooking() {
                       variant="ghost"
                       disabled={tripType === "oneway"}
                       className={cn(
-                        "h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-sm shadow-sm",
+                        "h-10 sm:h-12 w-full justify-start text-left font-normal border border-gray-200 bg-white hover:bg-gray-50 text-xs sm:text-sm shadow-sm",
                         tripType === "oneway" &&
                           "opacity-50 cursor-not-allowed",
                         !returnDate && "text-muted-foreground"
@@ -195,8 +195,8 @@ export function FlightHotelBooking() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                 <div className="flex items-center gap-1">
                   {transportModes.map((transportMode) => {
                     const IconComponent = transportMode.icon;
@@ -213,7 +213,7 @@ export function FlightHotelBooking() {
                         )}
                       >
                         <IconComponent className="h-4 w-4" />
-                        {transportMode.label}
+                        <span className="hidden md:inline">{transportMode.label}</span>
                       </Button>
                     );
                   })}
@@ -224,19 +224,19 @@ export function FlightHotelBooking() {
                     id="includeHotels"
                     checked={includeHotels}
                     onCheckedChange={(checked) => setIncludeHotels(!!checked)}
-                    className="h-4 w-4"
+                    className="h-4 w-4 flex-shrink-0"
                   />
                   <Label
                     htmlFor="includeHotels"
-                    className="text-sm cursor-pointer font-medium"
+                    className="text-xs sm:text-sm cursor-pointer font-medium whitespace-nowrap"
                   >
-                    Include Hotels
+                    Hotels
                   </Label>
                 </div>
 
                 <Select value={classType} onValueChange={setClassType}>
-                  <SelectTrigger className="w-32 h-10 text-sm">
-                    <SelectValue />
+                  <SelectTrigger className="w-28 sm:w-32 h-8 sm:h-10 text-xs sm:text-sm">
+                    <SelectValue placeholder="Class" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="economy">Economy</SelectItem>
@@ -245,14 +245,29 @@ export function FlightHotelBooking() {
                   </SelectContent>
                 </Select>
 
-                <div className="flex items-center gap-3">
+                <div className="md:hidden w-32">
+                  <Select
+                    value={tripType}
+                    onValueChange={(value) => setTripType(value as "oneway" | "roundtrip")}
+                  >
+                    <SelectTrigger className="h-8 text-xs">
+                      <SelectValue placeholder="Trip type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="oneway">One Way</SelectItem>
+                      <SelectItem value="roundtrip">Round Trip</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="hidden md:flex items-center gap-3">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
                       name="tripType"
                       value="oneway"
                       checked={tripType === "oneway"}
-                      onChange={(e) => setTripType(e.target.value)}
+                      onChange={(e) => setTripType(e.target.value as "oneway" | "roundtrip")}
                       className="w-4 h-4 text-blue-600"
                     />
                     <span className="text-sm font-medium">One Way</span>
@@ -263,7 +278,7 @@ export function FlightHotelBooking() {
                       name="tripType"
                       value="roundtrip"
                       checked={tripType === "roundtrip"}
-                      onChange={(e) => setTripType(e.target.value)}
+                      onChange={(e) => setTripType(e.target.value as "oneway" | "roundtrip")}
                       className="w-4 h-4 text-blue-600"
                     />
                     <span className="text-sm font-medium">Round Trip</span>
@@ -272,10 +287,11 @@ export function FlightHotelBooking() {
               </div>
 
               <Button
-                className="px-8 py-3 text-xs font-medium shadow-lg"
+                disabled
+                className="text-xs font-medium shadow-lg px-4 sm:px-6 py-2 h-10 sm:h-auto w-full sm:w-auto mt-2 sm:mt-0"
               >
                 <Search className="w-4 h-4" />
-                Search (coming soon)
+                <span className="ml-2">Search</span>
               </Button>
             </div>
           </CardContent>
@@ -285,21 +301,22 @@ export function FlightHotelBooking() {
           <DealCarousel />
         </div>
 
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 mb-4">
+        <div className="mt-8 sm:mt-12 text-center px-2">
+          <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
             Curated from trusted travel sites
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8">
             {partnerLogos.map((partner) => (
               <div
                 key={partner.name}
-                className="grayscale hover:grayscale-0 transition-all"
+                className="grayscale hover:grayscale-0 transition-all flex-shrink-0"
               >
                 <Image
                   src={partner.logo || "/placeholder.svg"}
                   alt={partner.name}
                   width={60}
                   height={40}
+                  className="w-12 sm:w-14 md:w-16 h-auto"
                 />
               </div>
             ))}

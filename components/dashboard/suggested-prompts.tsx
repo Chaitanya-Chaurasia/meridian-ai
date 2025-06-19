@@ -21,7 +21,7 @@ export function SuggestedPrompts({ onPromptSelect }: SuggestedPromptsProps) {
           <Badge
             key={index}
             variant="outline"
-            className="cursor-pointer text-xs px-3 py-1 bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300 tracking-tight transition-colors"
+            className="cursor-pointer text-xs px-3 py-1 bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors"
             onClick={() => onPromptSelect(prompt)}
           >
             {prompt}

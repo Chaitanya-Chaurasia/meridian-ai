@@ -37,33 +37,7 @@ export default function ExplorePage() {
       <div className="fixed inset-0 -z-1">
         <Image src={bg} alt="bg image" fill className="object-cover" priority />
       </div>
-      <div className="relative z-10 border-2 container mx-auto py rounded-lg bg-lime-400/10">
-        <div className="text-center mb-12 mt-24 ">
-          <h1 className="text-md text-white tracking-tighter z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.9)]">
-            Our{" "}
-            <span className={`text-emerald-400 ${fonts.playfairDisplay}`}>
-              planet
-            </span>{" "}
-            is a gift
-          </h1>
-          <h1 className="text-5xl text-white font-semibold tracking-tighter mb-4 z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-            Find your next{" "}
-            <span className={`text-purple-800 ${fonts.playfairDisplay}`}>
-              destination
-            </span>
-          </h1>
-          {/* <div className="relative max-w-md mx-auto mt-6 z-10">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 stroke-white z-50" />
-            <Input
-              type="text"
-              placeholder="Type Macchu Picchu"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 border-0 rounded-full bg-white/10 backdrop-blur placeholder:text-white placeholder:text-xs"
-            />
-          </div> */}
-        </div>
-
+      <div className="relative z-10 container mx-auto py rounded-lg bg-lime-400/10">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-[4px] auto-rows-[200px]">
           <div className="fixed inset-0 z-1">
             <div className="absolute inset-0 bg-lime-400/10 transition-opacity duration-300" />

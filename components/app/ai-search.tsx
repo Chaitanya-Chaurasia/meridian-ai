@@ -29,8 +29,8 @@ export function AiSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           type="search"
-          placeholder="Where do you want to go?"
-          className="text-xs placeholder:text-gray-400 h-10 pl-18 pr-10 bg-white/90 border border-gray-200 backdrop-blur-sm shadow-sm rounded-full focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-gray-300 transition-all"
+          placeholder="Where should we take you?"
+          className="text-xs placeholder:text-gray-400 h-10 pl-18 pr-10 bg-white border border-gray-200 backdrop-blur-sm shadow-sm rounded-full focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-gray-300 transition-all"
         />
         <div className="absolute right-1.5 top-1/2 transform -translate-y-1/2">
           <Button
