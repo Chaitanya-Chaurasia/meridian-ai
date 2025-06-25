@@ -1,23 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sparkles, Send } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useState } from "react";
 import { SuggestedPrompts } from "@/components/dashboard/suggested-prompts";
 export function AiSearch() {
   const [query, setQuery] = useState("");
-
-  const scrollToSection = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  };
 
   return (
     <div className="relative max-w-xl mx-auto space-y-4">

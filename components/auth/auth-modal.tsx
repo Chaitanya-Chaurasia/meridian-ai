@@ -88,7 +88,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               {authMethod === "phone" && (
                 <p className="text-xs text-gray-500">
-                  We'll call or text you to confirm your number. Standard message and data rates apply.{" "}
+                  We&apos;ll call or text you to confirm your number. Standard message and data rates apply.{" "}
                   <button type="button" className="text-blue-500 hover:underline">
                     Privacy Policy
                   </button>

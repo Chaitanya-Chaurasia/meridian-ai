@@ -10,6 +10,7 @@ import {
   Star,
 } from "lucide-react";
 import { Button } from "../ui/button";
+import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useRef } from "react";
 import google from "@/public/google.png";
@@ -19,6 +20,23 @@ import expedia from "@/public/expedia.svg";
 import sky from "@/public/skyscanner.png";
 import { cn } from "@/lib/utils";
 import { fonts } from "@/lib/utils";
+
+interface Deal {
+  id: number;
+  type: string;
+  title: string;
+  price: number;
+  provider: string;
+  providerLogo: string | StaticImageData;
+  date: string;
+  rating: number;
+  discount: string;
+  airline?: string;
+  flightTime?: string;
+  connectionType?: string;
+  departureTime?: string;
+  arrivalTime?: string;
+}
 
 export default function DealCarousel() {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -46,7 +64,6 @@ export default function DealCarousel() {
       type: "flight",
       title: "New York to Miami",
       price: 99,
-      image: "",
       provider: "Skyscanner",
       providerLogo: sky,
       date: "Mar 15 - Mar 22",
@@ -63,7 +80,6 @@ export default function DealCarousel() {
       type: "cruise",
       title: "Caribbean Cruise",
       price: 599,
-      image: "/placeholder.svg?height=120&width=200&text=Cruise+Deal",
       provider: "Google",
       providerLogo: google,
       date: "Apr 10 - Apr 17",
@@ -75,7 +91,6 @@ export default function DealCarousel() {
       type: "car",
       title: "SUV Rental in Los Angeles",
       price: 45,
-      image: "/placeholder.svg?height=120&width=200&text=Car+Rental",
       provider: "Expedia",
       providerLogo: expedia,
       date: "Mar 1 - Mar 8",
@@ -87,7 +102,6 @@ export default function DealCarousel() {
       type: "flight",
       title: "Chicago to Las Vegas",
       price: 129,
-      image: "/placeholder.svg?height=120&width=200&text=Flight+Deal",
       provider: "Skyscanner",
       providerLogo: sky,
       date: "Feb 28 - Mar 7",
@@ -104,7 +118,6 @@ export default function DealCarousel() {
       type: "cruise",
       title: "Alaska Cruise",
       price: 799,
-      image: "/placeholder.svg?height=120&width=200&text=Cruise+Deal",
       provider: "Google",
       providerLogo: google,
       date: "Jun 15 - Jun 22",
@@ -116,7 +129,6 @@ export default function DealCarousel() {
       type: "car",
       title: "Economy Car in Orlando",
       price: 35,
-      image: "/placeholder.svg?height=120&width=200&text=Car+Rental",
       provider: "Expedia",
       providerLogo: expedia,
       date: "Apr 5 - Apr 12",
@@ -128,7 +140,6 @@ export default function DealCarousel() {
       type: "flight",
       title: "Boston to San Francisco",
       price: 199,
-      image: "/placeholder.svg?height=120&width=200&text=Flight+Deal",
       provider: "Skyscanner",
       providerLogo: sky,
       date: "May 10 - May 17",
@@ -145,7 +156,6 @@ export default function DealCarousel() {
       type: "hotel",
       title: "Luxury Resort in Bali",
       price: 89,
-      image: "/placeholder.svg?height=120&width=200&text=Hotel+Deal",
       provider: "Booking.com",
       providerLogo: booking,
       date: "Jul 20 - Jul 27",
@@ -157,7 +167,6 @@ export default function DealCarousel() {
       type: "hotel",
       title: "Cozy Apartment in Paris",
       price: 75,
-      image: "/placeholder.svg?height=120&width=200&text=Hotel+Deal",
       provider: "Airbnb",
       providerLogo: airbnb,
       date: "Mar 25 - Apr 1",
@@ -169,7 +178,6 @@ export default function DealCarousel() {
       type: "flight",
       title: "Seattle to Denver",
       price: 149,
-      image: "/placeholder.svg?height=120&width=200&text=Flight+Deal",
       provider: "Skyscanner",
       providerLogo: sky,
       date: "Jun 5 - Jun 12",
@@ -183,7 +191,7 @@ export default function DealCarousel() {
     },
   ];
 
-  const renderDealDetails = (deal: any) => {
+  const renderDealDetails = (deal: Deal) => {
     if (deal.type === "flight") {
       return (
         <div className="space-y-2">
@@ -233,7 +241,7 @@ export default function DealCarousel() {
   return (
     <div className="mt-12 mb-8 p-10">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-semibold tracking-tighter">Deals you <span className={`text-cyan-500 ${fonts.playfairDisplay}`}>can't</span> miss!</h3>
+        <h3 className="text-2xl font-semibold tracking-tighter">Deals you <span className={`text-cyan-500 ${fonts.playfairDisplay}`}>can&apos;t</span> miss!</h3>
         <div className="flex gap-2">
           <Button
             variant="outline"

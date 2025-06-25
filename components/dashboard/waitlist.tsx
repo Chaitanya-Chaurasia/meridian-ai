@@ -1,16 +1,12 @@
 "use client";
 
-import type React from "react";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Check, ArrowRight } from "lucide-react";
-import Image from "next/image";
-import logo from "@/public/logo.svg";
-import { fonts } from "@/lib/utils";
+import { Check, ArrowRight, Loader2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 export function Waitlist() {
   const avatars = [
@@ -40,93 +36,124 @@ export function Waitlist() {
     },
   ];
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [waitlistCount, setWaitlistCount] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault() == console.log("Email submitted:", email);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+  useEffect(() => {
+    const fetchWaitlistCount = async () => {
+      try {
+        const { count, error } = await supabase
+          .from('waitlist')
+          .select('*', { count: 'exact', head: true });
+        
+        if (!error && count !== null) {
+          setWaitlistCount(count.toString());
+        }
+      } catch (err) {
+        console.error('Error fetching waitlist count:', err);
+      }
+    };
+
+    fetchWaitlistCount();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([{ email, created_at: new Date().toISOString() }]);
+
+      if (error) {
+        if (error.code === '23505') { 
+          toast.success("You're already on the waitlist!");
+        } else {
+          throw error;
+        }
+      } else {
+        toast.success("Successfully joined the waitlist!");
+        setEmail("");
+      }
+      
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Error adding to waitlist:", err);
+      toast.error("Failed to join waitlist. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="flex flex-col lg:flex-row items-center gap-4">
-            <Image src={logo} alt="logo" className="w-24 h-24" />
-            <h2 className="text-4xl font-semibold tracking-tighter leading-tighter">
-              Join our{" "}
-              <span className={`text-lime-500 ${fonts.playfairDisplay}`}>
-                waitlist
-              </span>
-              <p className="text-2xl font-medium tracking-tighter">
-                You type, we book- as simple as that!
-              </p>
-            </h2>
-          </div>
+    <section className="bg-transparent">
+        <div className="">
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              size={2}
+              className="text-xs placeholder:text-xs bg-white"
+            />
+            <Button
+              type="submit"
+              className="bg-black text-xs hover:bg-gray-800 text-white flex items-center justify-center gap-2"
+              disabled={isSubmitted}
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Adding...
+                </>
+              ) : isSubmitted ? (
+                <>
+                  <Check className="h-4 w-4" />
+                  You&apos;re on the list!
+                </>
+              ) : (
+                <>
+                  Join Waitlist!
+                  <ArrowRight className="h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </form>
 
-          <div>
-            <Card className="shadow-none border-0">
-              <CardContent className="p-8 space-y-6">
-                <h3 className="text-sm font-medium">
-                  Keep an eye out on your inbox!
-                </h3>
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex items-center gap-2"
+          {error && (
+            <p className="text-xs text-red-500 mt-2">{error}</p>
+          )}
+          <div className="flex items-center gap-4 mt-4">
+            <div className="flex -space-x-2">
+              {avatars.map((avatar) => (
+                <Avatar
+                  key={avatar.profileUrl}
+                  className="border-2 border-white h-6 w-6 object-cover"
                 >
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    size={2}
-                    className=""
-                  />
-                  <Button
-                    type="submit"
-                    className="bg-black hover:bg-gray-800 text-white flex items-center justify-center gap-2"
-                    disabled={isSubmitted}
-                  >
-                    {isSubmitted ? (
-                      <>
-                        <Check className="h-4 w-4" />
-                        You're on the list!
-                      </>
-                    ) : (
-                      <>
-                        Join the waitlist
-                        <ArrowRight className="h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-2">
-                    {avatars.map((avatar) => (
-                      <Avatar
-                        key={avatar.profileUrl}
-                        className="border-2 border-white h-6 w-6 object-cover"
-                      >
-                        <AvatarImage src={avatar.imageUrl} alt="Person 1" />
-                      </Avatar>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                    <p className="text-sm text-gray-600">
-                      Hurry up.{" "}
-                      <span className="font-medium">1,500+ people</span> are already on the waitlist!
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                  <AvatarImage src={avatar.imageUrl} alt="Person 1" />
+                </Avatar>
+              ))}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <p className="text-xs text-gray-600">
+                & <span className="font-medium">{waitlistCount.toLocaleString()}+ people</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

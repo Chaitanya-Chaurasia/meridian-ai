@@ -22,7 +22,6 @@ import { ArrowLeftRight, Search, Plane, Car, Ship, Train } from "lucide-react";
 import { useState } from "react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import airbnb from "@/public/airbnb.png";
 import booking from "@/public/booking.svg";
 import expedia from "@/public/expedia.svg";
@@ -32,7 +31,6 @@ import { fonts } from "@/lib/utils";
 import DealCarousel from "./deal-carousel";
 
 export function FlightHotelBooking() {
-  const router = useRouter();
   const [departure, setDeparture] = useState("New York (JFK), United States");
   const [destination, setDestination] = useState("Barcelona, Spain");
   const [departureDate, setDepartureDate] = useState<Date | undefined>(

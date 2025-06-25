@@ -95,11 +95,11 @@ export function NatureRetreats() {
             <span className={`text-green-600 ${fonts.playfairDisplay}`}>Nature</span>-Retreats
           </h2>
           <p className="text-gray-600 text-sm">Escape to pristine wilderness and breathtaking landscapes.</p>
-          <p className="text-gray-600 text-sm">Adventure awaits in the world's most stunning natural destinations</p>
+          <p className="text-gray-600 text-sm">Adventure awaits in the world&apos;s most stunning natural destinations</p>
         </div>
 
         <div className="grid grid-cols-4 grid-rows-1 gap-1  h-[600px]">
-          {retreats.map((retreat, index) => (
+          {retreats.map((retreat) => (
             <div key={retreat.id} className="relative overflow-hidden rounded-lg group cursor-pointer">
               <Image
                 src={retreat.image || "/placeholder.svg"}
