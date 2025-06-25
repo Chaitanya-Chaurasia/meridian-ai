@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Footer } from "@/components/app/footer";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Meridian.ai",
@@ -24,6 +25,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster position="top-right" richColors />
+        <Analytics />
       </body>
     </html>
   );
