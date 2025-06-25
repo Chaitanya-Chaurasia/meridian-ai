@@ -56,7 +56,7 @@ export function TypewriterInput({ prompts, className = '' }: TypewriterInputProp
       <div className="relative w-full">
         <div className="relative w-full">
           <div
-            className="w-full bg-transparent border-b text-white border-gray-400 py-2 px-1 placeholder-gray-400 focus:outline-none focus:border-black transition-colors text-md tracking-tighter text-wrap  pr-6"
+            className="w-full bg-transparent text-white py-2 px-1 placeholder-gray-400 focus:outline-none focus:border-black transition-colors sm:text-xs text-md tracking-tighter text-wrap  pr-6"
           >
             {displayText}
           </div>

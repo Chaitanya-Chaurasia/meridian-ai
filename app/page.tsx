@@ -27,12 +27,12 @@ export default function HomePage() {
         >
           {[...Array(9)].map((_, index) => {
             const borderClasses = [
-              "border-dashed border-black/20",
+              "border-dashed border-black/30",
               index % 3 !== 2 ? "border-r" : "",
               index < 6 ? "border-b" : "",
             ].join(" ");
 
-            const isDiagonalCell = index === 0 || index === 5 || index === 8;
+            const isDiagonalCell = index === 0 || index === 4 || index === 5 || index === 8;
             const bgClass = isDiagonalCell ? "bg-transparent" : "bg-white";
 
             const isVisibleOnMobile =
@@ -62,24 +62,22 @@ export default function HomePage() {
       </div>
 
       <div className="fixed top-8 left-8 z-10">
-        <div className="text-white px-1 font-medium text-sm tracking-tighter bg-black">
-          MERIDIAN.ai
+        <div className="text-white px-1 font-medium md:text-sm text-xs tracking-tighter bg-black">
+          meridian.ai
         </div>
       </div>
 
       <div className="absolute bottom-20 left-4 z-10 w-[300px] text-wrap md:text-black text-white">
         <div className="flex flex-col gap-4">
           <div className="text-xs tracking-tighter whitespace-nowrap">
-            BOOK FASTER, BOOK SMARTER
+            <span className="font-semibold text-white md:bg-white md:text-black">BOOK FASTER, TRAVEL SMARTER</span>
           </div>
           <div className="flex flex-col">
             <div className="text-5xl font-medium leading-tighter tracking-[-0.2rem] flex flex-col">
-              <span className="">
-                airbnbs, cars, flights, dining, visas...
-              </span>
+                airbnbs, cars, flights, dining, visas, memories
             </div>
             <div className="text-6xl tracking-tighter whitespace-nowrap flex gap-2">
-              <span className="font-semibold sm:text-white md:text-amber-300">just</span>
+              <span className="font-semibold sm:text-white md:text-purple-500">just</span>
               <span
                 className={`font-medium text-lime-300 ${GeistMono.className}`}
               >
