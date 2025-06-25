@@ -148,7 +148,7 @@ export function Waitlist() {
             </div>
             <div className="flex items-center gap-1.5">
               <div className="h-2 w-2 rounded-full bg-green-500"></div>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs sm:text-white md:text-gray-600">
                 & <span className="font-medium">{waitlistCount.toLocaleString()}+ people</span>
               </p>
             </div>

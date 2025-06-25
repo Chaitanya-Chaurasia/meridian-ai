@@ -1,18 +1,19 @@
 import { GeistMono } from "geist/font/mono";
 import { TypewriterInput } from "@/components/app/typewriter-input";
 import { Waitlist } from "@/components/dashboard/waitlist";
+import { Footer } from "@/components/app/footer";
 export default function HomePage() {
-  const prompts = [   
+  const prompts = [
     "3 day trip to NYC under $4000",
     "Cozy Airbnb in the Alps with a good view?",
     "Vegan fine dining in New Delhi? (I'm on a diet)",
     "Gyms near Mykonos under EUR 30",
     "What's the train schedule from Paris to Barcelona?",
-    "Packing list for a fall trip to Bali?",   
+    "Packing list for a fall trip to Bali?",
   ];
   return (
     <main className="h-screen bg-white relative overflow-hidden">
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{ backgroundImage: 'url("/bg.jpg")' }}
       />
@@ -26,27 +27,36 @@ export default function HomePage() {
         >
           {[...Array(9)].map((_, index) => {
             const borderClasses = [
-              "border-dashed border-black/70",
+              "border-dashed border-black/20",
               index % 3 !== 2 ? "border-r" : "",
               index < 6 ? "border-b" : "",
             ].join(" ");
 
-            const isDiagonalCell = index === 0 ||  index === 5 || index === 8;
-            const bgClass = isDiagonalCell ? 'bg-transparent' : 'bg-white';
-            
-            if (index === 2) {
-              return (
-                <div
-                  key={index}
-                  className={`p-4 flex items-center justify-end ${borderClasses} bg-black`}
-                >
-                  <div className="w-full max-w-md">
-                    <TypewriterInput prompts={prompts} className="text-right" />
+            const isDiagonalCell = index === 0 || index === 5 || index === 8;
+            const bgClass = isDiagonalCell ? "bg-transparent" : "bg-white";
+
+            const isVisibleOnMobile =
+              index % 3 === 2 ? "block" : "hidden md:block";
+
+              if (index === 2) {
+                return (
+                  <div
+                    key={index}
+                    className={`p-4 ${borderClasses} bg-black ${isVisibleOnMobile} w-full md:w-auto w-screen`}
+                  >
+                    <div className="w-full md:max-w-md md:ml-auto">
+                      <TypewriterInput prompts={prompts} className="w-full text-right" />
+                    </div>
                   </div>
-                </div>
-              );
-            }
-            return <div key={index} className={`${borderClasses} ${bgClass}`} />;
+                );
+              }
+              
+            return (
+              <div
+                key={index}
+                className={`${borderClasses} ${bgClass} ${isVisibleOnMobile}`}
+              />
+            );
           })}
         </div>
       </div>
@@ -57,21 +67,19 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-2 right-2 z-10">
+      <div className="absolute bottom-20 left-4 z-10 w-[300px] text-wrap md:text-black text-white">
         <div className="flex flex-col gap-4">
           <div className="text-xs tracking-tighter whitespace-nowrap">
             BOOK FASTER, BOOK SMARTER
           </div>
           <div className="flex flex-col">
-            <div className="text-5xl font-medium leading-tighter tracking-[-0.3rem] flex flex-col">
-              <span 
-                className="text-black"
-              >
-                airbnbs, cars, flights, dining, visas
+            <div className="text-5xl font-medium leading-tighter tracking-[-0.2rem] flex flex-col">
+              <span className="">
+                airbnbs, cars, flights, dining, visas...
               </span>
             </div>
             <div className="text-6xl tracking-tighter whitespace-nowrap flex gap-2">
-              <span className="font-semibold">just</span>
+              <span className="font-semibold sm:text-white md:text-amber-300">just</span>
               <span
                 className={`font-medium text-lime-300 ${GeistMono.className}`}
               >
@@ -83,6 +91,9 @@ export default function HomePage() {
             <Waitlist />
           </div>
         </div>
+      </div>
+      <div className="bg-black fixed bottom-0 left-0 right-0 z-10">
+        <Footer />
       </div>
     </main>
   );

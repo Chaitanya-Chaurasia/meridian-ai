@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { Footer } from "@/components/app/footer";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -23,7 +22,7 @@ export default function RootLayout({
       >
         {/* <Header /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <Toaster position="top-right" richColors />
         <Analytics />
       </body>
