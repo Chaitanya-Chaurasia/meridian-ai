@@ -106,7 +106,7 @@ export function Waitlist() {
               onChange={(e) => setEmail(e.target.value)}
               required
               size={2}
-              className="text-xs placeholder:text-xs bg-white"
+              className="text-xs placeholder:text-xs bg-white text-black"
             />
             <Button
               type="submit"

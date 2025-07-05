@@ -73,13 +73,13 @@ export default function HomePage() {
             <span className="font-semibold text-white md:bg-white md:text-black">BOOK FASTER, TRAVEL SMARTER</span>
           </div>
           <div className="flex flex-col">
-            <div className="text-5xl font-medium leading-tighter tracking-[-0.2rem] flex flex-col">
-                airbnbs, cars, flights, dining, visas, memories
+            <div className="text-5xl font-semibold leading-tighter tracking-[-0.2rem] flex flex-col">
+                airbnbs, cars, flights, dining, visas
             </div>
             <div className="text-6xl tracking-tighter whitespace-nowrap flex gap-2">
-              <span className="font-semibold sm:text-white md:text-purple-500">just</span>
+              <span className="font-semibold sm:text-white md:text-black">just</span>
               <span
-                className={`font-medium text-lime-300 ${GeistMono.className}`}
+                className={`font-semibold text-teal-400 ${GeistMono.className}`}
               >
                 prompt.
               </span>
