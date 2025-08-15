@@ -102,7 +102,7 @@ export function TrendingDestinations() {
   ]
 
   return (
-    <section className="mt-42 bg-gray-50">
+    <section className="mt-42">
       <div className="container mx-auto">
         <div className="mb-32 text-center">
           <h2 className="text-5xl font-semibold tracking-tighter mb-2" id="trending">
