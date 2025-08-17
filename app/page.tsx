@@ -1,7 +1,9 @@
-import { GeistMono } from "geist/font/mono";
 import { TypewriterInput } from "@/components/app/typewriter-input";
 import { Waitlist } from "@/components/dashboard/waitlist";
 import { Footer } from "@/components/app/footer";
+import { fonts } from "@/lib/utils";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+
 export default function HomePage() {
   const prompts = [
     "3 day trip to NYC under $4000",
@@ -73,16 +75,17 @@ export default function HomePage() {
             <span className="font-semibold text-white md:bg-white md:text-black">BOOK FASTER, TRAVEL SMARTER</span>
           </div>
           <div className="flex flex-col">
-            <div className="text-5xl font-semibold leading-tighter tracking-[-0.2rem] flex flex-col">
-                airbnbs, cars, flights, dining, visas
+            <div className="text-5xl font-medium leading-tighter tracking-[-0.2rem] flex flex-col">
+                airbnbs cars flights dining visas
             </div>
             <div className="text-6xl tracking-tighter whitespace-nowrap flex gap-2">
-              <span className="font-semibold sm:text-white md:text-black">just</span>
+              <AnimatedGradientText className="">just {" "}
               <span
-                className={`font-semibold text-teal-400 ${GeistMono.className}`}
+                className={`font-semibold  ${fonts.playfairDisplay}`}
               >
                 prompt.
               </span>
+              </AnimatedGradientText>
             </div>
           </div>
           <div className="w-[350px]">
