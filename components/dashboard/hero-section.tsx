@@ -4,6 +4,8 @@ import bg from "@/public/get-started.jpg";
 import Image from "next/image";
 import { fonts } from "@/lib/utils";
 import Link from "next/link";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
+
 
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
   e.preventDefault();
@@ -40,7 +42,7 @@ export function HeroSection() {
           </span>{" "}
           In
           <br />
-          Every Destination With AI!
+          Every <AnimatedGradientText className="font-medium" colorFrom="white" colorTo="yellow">Destination</AnimatedGradientText> With AI!
         </h1>
 
         <p className="text-white/90 text-[10px] mb-8 max-w-2xl mx-auto ">

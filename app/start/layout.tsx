@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import "@/app/globals.css";
 import { Header } from "@/components/app/header";
 import { Footer } from "@/components/app/footer";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Meridian.ai",
@@ -21,7 +22,9 @@ export default function HomeLayout({
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} ${GeistSans.className} antialiased`}
       >
-        <Header />
+        <Suspense fallback={<div></div>}>
+          <Header />
+        </Suspense>
         {children}
         <Footer />
       </body>
